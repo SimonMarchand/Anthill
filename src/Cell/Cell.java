@@ -1,4 +1,4 @@
-package Cell;
+package src.Cell;
 
 /**
  * Created by felix on 03/01/17.
