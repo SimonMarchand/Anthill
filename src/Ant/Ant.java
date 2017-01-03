@@ -14,10 +14,12 @@ public class Ant {
     private ArrayList backTrack;
     private AnthillCell antHill;
     private Food food;
+    private IBehaviour behaviour;
 
-    public Ant(Coordinates position, AnthillCell antHill) {
+    public Ant(Coordinates position, AnthillCell antHill, IBehaviour behaviour) {
         this.position = position;
         this.antHill = antHill;
+        this.behaviour = behaviour;
         this.backTrack = new ArrayList<Coordinates>();
     }
 
@@ -51,5 +53,17 @@ public class Ant {
 
     public void setFood(Food food) {
         this.food = food;
+    }
+
+    public IBehaviour getBehaviour() {
+        return behaviour;
+    }
+
+    public void setBehaviour(IBehaviour behaviour) {
+        this.behaviour = behaviour;
+    }
+
+    public boolean hasFood() {
+        return this.getFood()!=null;
     }
 }
