@@ -5,8 +5,9 @@ package Cell;
  */
 public class EmptyCell extends Cell {
 
-	public EmptyCell() {
-		super(0);
+	public EmptyCell(int pheromoneHistory) {
+		super(pheromoneHistory);
 	}
-	
+
+
 }
