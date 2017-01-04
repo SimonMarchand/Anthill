@@ -6,6 +6,7 @@ import Cell.Coordinates;
 import Cell.Food;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by felix on 03/01/17.
@@ -16,12 +17,54 @@ public class Ant {
     private AnthillCell antHill;
     private Food food;
     private IBehaviour behaviour;
+    private char orientation;
 
+    /**
+     * Constructeur dans le cas où l'orientation n'est pas donnée. Elle est donc donnée aléatoirement
+     * @param position
+     * @param antHill
+     * @param behaviour
+     */
     public Ant(Coordinates position, AnthillCell antHill, IBehaviour behaviour) {
         this.position = position;
         this.antHill = antHill;
         this.behaviour = behaviour;
         this.backTrack = new ArrayList<Coordinates>();
+
+        Random r = new Random();
+        int i = r.nextInt(3);
+        switch(i) {
+            case 0 :
+                this.orientation = 'U';
+                break;
+            case 1 :
+                this.orientation = 'D';
+                break;
+            case 2 :
+                this.orientation = 'R';
+                break;
+            case 3 :
+                this.orientation = 'L';
+                break;
+            default :
+                this.orientation = 'U';
+                break;
+        }
+    }
+
+    /**
+     * Constructeur avec orientation donnée en paramètre
+     * @param position
+     * @param antHill
+     * @param behaviour
+     * @param orientation
+     */
+    public Ant(Coordinates position, AnthillCell antHill, IBehaviour behaviour, char orientation) {
+        this.position = position;
+        this.antHill = antHill;
+        this.behaviour = behaviour;
+        this.backTrack = new ArrayList<Coordinates>();
+        this.orientation = orientation;
     }
 
     public Coordinates getPosition() {
