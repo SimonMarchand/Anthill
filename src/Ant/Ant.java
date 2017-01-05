@@ -128,7 +128,11 @@ public class Ant {
     }
 
     /**
-     * Exécute un mouvement de la fourmi
+     * Exécute un mouvement de la fourmi :
+     * Pose de phéromones
+     * Déplacement
+     * Sauvegarde backtrack
+     * Récupération nourriture / Dépôt nourriture
      */
     public void move() {
         // Commence par déposer des phéromones sur la case actuelle si elle transporte de la nourriture
@@ -150,7 +154,7 @@ public class Ant {
         if(cell.getClass().getName() == "FoodCell" && !this.hasFood() && cell.hasFood()) {
             this.takeFood((FoodCell) cell);
         }
-        if(cell.getClass().getName() == "AnthillCell" && this.hasFood()) {
+        else if(cell.getClass().getName() == "AnthillCell" && this.hasFood()) {
             this.putFood((AnthillCell) cell);
             this.backTrack = new ArrayList<Coordinates>();
         }
