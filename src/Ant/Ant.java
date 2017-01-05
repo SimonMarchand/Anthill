@@ -174,7 +174,7 @@ public class Ant {
     }
 
     private void putFood(AnthillCell cell) {
-        cell.getFood().setQuantity(cell.getFood().getQuantity() + this.getFood().getQuantity());
+        cell.placeFood(this.getFood().getQuantity());
         this.food = null;
     }
 }

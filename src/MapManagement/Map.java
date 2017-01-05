@@ -11,8 +11,8 @@ public class Map {
         this.grid = grid;
     }
     
-    public Cell getCell(int x, int y){
-        return this.grid[x][y];
+    public Cell getCell(Coordinates coordinates){
+        return this.grid[coordinates.getX()][coordinates.getY()];
     }
     
     // A compléter pour vérifier que la map soit juste, et qu'il n'y a pas eu d'erreur de lecture
