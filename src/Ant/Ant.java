@@ -15,13 +15,24 @@ import java.util.Random;
 public class Ant {
     public static int PHEROMONES_CAPACITY = 1;
     public static int FOOD_CAPACITY = 1;
+    public static String[] ORIENTATIONS = {
+            "N",
+            "NE",
+            "E",
+            "SE",
+            "S",
+            "SW",
+            "W",
+            "NW",
+    };
 
     private Coordinates position;
     private ArrayList backTrack;
     private AnthillCell antHill;
     private Food food;
     private IBehaviour behaviour;
-    private char orientation;
+    // Correspond aux lettres du pôle vers lequel elle est orientée
+    private String orientation;
 
     /**
      * Constructeur dans le cas où l'orientation n'est pas donnée. Elle est donc donnée aléatoirement
@@ -36,24 +47,7 @@ public class Ant {
         this.backTrack = new ArrayList<Coordinates>();
 
         Random r = new Random();
-        int i = r.nextInt(3);
-        switch(i) {
-            case 0 :
-                this.orientation = 'U';
-                break;
-            case 1 :
-                this.orientation = 'D';
-                break;
-            case 2 :
-                this.orientation = 'R';
-                break;
-            case 3 :
-                this.orientation = 'L';
-                break;
-            default :
-                this.orientation = 'U';
-                break;
-        }
+        this.orientation = (ORIENTATIONS[r.nextInt(7)]);
     }
 
     /**
@@ -63,7 +57,7 @@ public class Ant {
      * @param behaviour
      * @param orientation
      */
-    public Ant(Coordinates position, AnthillCell antHill, IBehaviour behaviour, char orientation) {
+    public Ant(Coordinates position, AnthillCell antHill, IBehaviour behaviour, String orientation) {
         this.position = position;
         this.antHill = antHill;
         this.behaviour = behaviour;
@@ -101,6 +95,14 @@ public class Ant {
 
     public void setFood(Food food) {
         this.food = food;
+    }
+
+    public String getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(String orientation) {
+        this.orientation = orientation;
     }
 
     public IBehaviour getBehaviour() {
