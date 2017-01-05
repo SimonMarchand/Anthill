@@ -4,6 +4,7 @@ import Cell.AnthillCell;
 import Cell.Cell;
 import Cell.Coordinates;
 import Cell.Food;
+import Cell.FoodCell;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,6 +13,9 @@ import java.util.Random;
  * Created by felix on 03/01/17.
  */
 public class Ant {
+    public static int PHEROMONES_CAPACITY = 1;
+    public static int FOOD_CAPACITY = 1;
+
     private Coordinates position;
     private ArrayList backTrack;
     private AnthillCell antHill;
@@ -120,16 +124,57 @@ public class Ant {
      * @return Cell cell
      */
     public Cell getCurrentCell() {
-        return null;
+        return this.antHill.getMap().getCell(this.position);
     }
 
     /**
-     * Exécute un mouvement de la fourmi
+     * Exécute un mouvement de la fourmi :
+     * Pose de phéromones
+     * Déplacement
+     * Sauvegarde backtrack
+     * Récupération nourriture / Dépôt nourriture
      */
     public void move() {
         // Commence par déposer des phéromones sur la case actuelle si elle transporte de la nourriture
+        if(this.hasFood()) {
+            this.getCurrentCell().putPheromones(PHEROMONES_CAPACITY);
+        }
+
         // Puis elle se déplace en demandant à son comportement vers quelle case se diriger
+        Cell cell = this.behaviour.nextCell(this);
+        this.position = cell.getCoord();
+
+        // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
+        if(!this.hasFood()) {
+            this.backTrack.add(this.position);
+        }
+
         // Enfin elle récupère la nourriture si elle est sur une case de nourriture, ou elle en dépose si elle est arrivée à la fourmillière
         // Ainsi on obtient une trace de phéromones sur tout le trajet (case nourriture comprise), sauf sur la fourmillière.
+        if(cell.getClass().getName() == "FoodCell" && !this.hasFood() && ((FoodCell) cell).hasFood()) {
+            this.takeFood((FoodCell) cell);
+        }
+        else if(cell.getClass().getName() == "AnthillCell" && this.hasFood()) {
+            this.putFood((AnthillCell) cell);
+            this.backTrack = new ArrayList<Coordinates>();
+        }
+    }
+
+    private void takeFood(FoodCell cell) {
+        Food food = cell.getFood();
+        if(food.getQuantity() >= FOOD_CAPACITY) {
+            this.food = new Food(FOOD_CAPACITY);
+            food.setQuantity(food.getQuantity() - FOOD_CAPACITY);
+        }
+
+        else {
+            this.food = new Food(food.getQuantity());
+            food.setQuantity(0);
+        }
+    }
+
+    private void putFood(AnthillCell cell) {
+        cell.getFood().setQuantity(cell.getFood().getQuantity() + this.getFood().getQuantity());
+        this.food = null;
     }
 }
