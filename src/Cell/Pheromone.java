@@ -14,4 +14,8 @@ public class Pheromone {
 	public int getQuantitePheromone(){
 		return quantitePheromone;
 	}
+	
+	public void depotPheromone(int quantite){
+		quantitePheromone+= quantite;
+	}
 }
