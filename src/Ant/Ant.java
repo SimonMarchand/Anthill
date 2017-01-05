@@ -30,7 +30,7 @@ public class Ant {
     private ArrayList backTrack;
     private AnthillCell antHill;
     private Food food;
-    private IBehaviour behaviour;
+    private Behaviour behaviour;
     // Correspond aux lettres du pôle vers lequel elle est orientée
     private String orientation;
 
@@ -40,7 +40,7 @@ public class Ant {
      * @param antHill
      * @param behaviour
      */
-    public Ant(Coordinates position, AnthillCell antHill, IBehaviour behaviour) {
+    public Ant(Coordinates position, AnthillCell antHill, Behaviour behaviour) {
         this.position = position;
         this.antHill = antHill;
         this.behaviour = behaviour;
@@ -57,7 +57,7 @@ public class Ant {
      * @param behaviour
      * @param orientation
      */
-    public Ant(Coordinates position, AnthillCell antHill, IBehaviour behaviour, String orientation) {
+    public Ant(Coordinates position, AnthillCell antHill, Behaviour behaviour, String orientation) {
         this.position = position;
         this.antHill = antHill;
         this.behaviour = behaviour;
@@ -105,11 +105,11 @@ public class Ant {
         this.orientation = orientation;
     }
 
-    public IBehaviour getBehaviour() {
+    public Behaviour getBehaviour() {
         return behaviour;
     }
 
-    public void setBehaviour(IBehaviour behaviour) {
+    public void setBehaviour(Behaviour behaviour) {
         this.behaviour = behaviour;
     }
 
