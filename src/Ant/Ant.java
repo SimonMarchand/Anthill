@@ -142,7 +142,7 @@ public class Ant {
 
         // Puis elle se déplace en demandant à son comportement vers quelle case se diriger
         Cell cell = this.behaviour.nextCell(this);
-        this.position = cell.getPosition();
+        this.position = cell.getCoord();
 
         // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
         if(!this.hasFood()) {
