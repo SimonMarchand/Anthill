@@ -140,15 +140,20 @@ public class Ant {
         Cell cell = this.behaviour.nextCell(this);
         this.position = cell.getPosition();
 
+        // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
+        if(!this.hasFood()) {
+            this.backTrack.add(this.position);
+        }
+
         // Enfin elle récupère la nourriture si elle est sur une case de nourriture, ou elle en dépose si elle est arrivée à la fourmillière
+        // Ainsi on obtient une trace de phéromones sur tout le trajet (case nourriture comprise), sauf sur la fourmillière.
         if(cell.getClass().getName() == "FoodCell" && !this.hasFood() && cell.hasFood()) {
             this.takeFood((FoodCell) cell);
         }
         if(cell.getClass().getName() == "AnthillCell" && this.hasFood()) {
             this.putFood((AnthillCell) cell);
+            this.backTrack = new ArrayList<Coordinates>();
         }
-
-        // Ainsi on obtient une trace de phéromones sur tout le trajet (case nourriture comprise), sauf sur la fourmillière.
     }
 
     private void takeFood(FoodCell cell) {
