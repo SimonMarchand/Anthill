@@ -144,6 +144,9 @@ public class Ant {
         if(cell.getClass().getName() == "FoodCell" && !this.hasFood() && cell.hasFood()) {
             this.takeFood((FoodCell) cell);
         }
+        if(cell.getClass().getName() == "AnthillCell" && this.hasFood()) {
+            this.putFood((AnthillCell) cell);
+        }
 
         // Ainsi on obtient une trace de phéromones sur tout le trajet (case nourriture comprise), sauf sur la fourmillière.
     }
@@ -159,5 +162,10 @@ public class Ant {
             this.food = new Food(food.getQuantity());
             food.setQuantity(0);
         }
+    }
+
+    private void putFood(AnthillCell cell) {
+        cell.getFood().setQuantity(cell.getFood().getQuantity() + this.getFood().getQuantity());
+        this.food = null;
     }
 }
