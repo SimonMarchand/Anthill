@@ -34,9 +34,9 @@ public class Cell {
 	public void setMap(Map map) { this.map = map; }
 
 	
-	public void putPheromones(Pheromone nbPheromone){
-		this.pheromonesHistory += 1;
-		int totPheromones = this.pheromone.getQuantitePheromone() + nbPheromone.getQuantitePheromone();
+	public void putPheromones(int nbPheromone){
+		this.pheromonesHistory += nbPheromone;
+		int totPheromones = this.pheromone.getQuantitePheromone() + nbPheromone;
 		this.pheromone.setQuantitePheromone(totPheromones); 
 	}
 
