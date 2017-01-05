@@ -7,22 +7,22 @@ import MapManagement.Map;
  */
 public class Cell {
 
-	private int pheromoneHistory;
-	private Coordinates coord;
-	private Pheromone pheromone;
-	private Map map;
+	protected int pheromonesHistory;
+	protected Coordinates coord;
+	protected Pheromone pheromone;
+	protected Map map;
 	
 	
 	public Cell(Coordinates coord, Map map) {
-		this.pheromoneHistory = 0;
+		this.pheromonesHistory = 0;
 		this.coord = coord;
 		this.pheromone = new Pheromone(0);
 		this.map = map;
 	}
 	
 	
-	public int getPheromoneHistory() { return pheromoneHistory; }
-	public void setPheromoneHistory(int pheromoneHistory) { this.pheromoneHistory = pheromoneHistory; }
+	public int getPheromonesHistory() { return pheromonesHistory; }
+	public void setPheromonesHistory(int pheromonesHistory) { this.pheromonesHistory = pheromonesHistory; }
 
 	public Coordinates getCoord() { return coord; }
 	public void setCoord(Coordinates coord) { this.coord = coord; }
@@ -35,8 +35,9 @@ public class Cell {
 
 	
 	public void putPheromones(Pheromone nbPheromone){
-		this.pheromoneHistory += 1;
-		this.pheromone = nbPheromone;
+		this.pheromonesHistory += 1;
+		int totPheromones = this.pheromone.getQuantitePheromone() + nbPheromone.getQuantitePheromone();
+		this.pheromone.setQuantitePheromone(totPheromones); 
 	}
 
 }
