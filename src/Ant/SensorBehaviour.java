@@ -9,6 +9,8 @@ public class SensorBehaviour extends Behaviour {
 
     @Override
     public Cell nextCell(Ant ant) {
+        if(ant.hasFood()) return backToAnthill(ant);
+
         return null;
     }
 }

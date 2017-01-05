@@ -6,8 +6,8 @@ import Cell.Coordinates;
 import Cell.Food;
 import Cell.FoodCell;
 
-import java.util.ArrayList;
 import java.util.Random;
+import java.util.Stack;
 
 /**
  * Created by felix on 03/01/17.
@@ -27,7 +27,7 @@ public class Ant {
     };
 
     private Coordinates position;
-    private ArrayList backTrack;
+    private Stack backTrack;
     private AnthillCell antHill;
     private Food food;
     private Behaviour behaviour;
@@ -44,7 +44,7 @@ public class Ant {
         this.position = position;
         this.antHill = antHill;
         this.behaviour = behaviour;
-        this.backTrack = new ArrayList<Coordinates>();
+        this.backTrack = new Stack<Coordinates>();
 
         Random r = new Random();
         this.orientation = (ORIENTATIONS[r.nextInt(7)]);
@@ -61,7 +61,7 @@ public class Ant {
         this.position = position;
         this.antHill = antHill;
         this.behaviour = behaviour;
-        this.backTrack = new ArrayList<Coordinates>();
+        this.backTrack = new Stack<Coordinates>();
         this.orientation = orientation;
     }
 
@@ -73,11 +73,11 @@ public class Ant {
         this.position = position;
     }
 
-    public ArrayList getBackTrack() {
+    public Stack<Coordinates> getBackTrack() {
         return backTrack;
     }
 
-    public void setBackTrack(ArrayList backTrack) {
+    public void setBackTrack(Stack backTrack) {
         this.backTrack = backTrack;
     }
 
@@ -148,7 +148,7 @@ public class Ant {
 
         // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
         if(!this.hasFood()) {
-            this.backTrack.add(this.position);
+            this.backTrack.push(this.position);
         }
 
         // Enfin elle récupère la nourriture si elle est sur une case de nourriture, ou elle en dépose si elle est arrivée à la fourmillière
@@ -158,7 +158,7 @@ public class Ant {
         }
         else if(cell.getClass().getName() == "AnthillCell" && this.hasFood()) {
             this.putFood((AnthillCell) cell);
-            this.backTrack = new ArrayList<Coordinates>();
+            this.backTrack = new Stack<Coordinates>();
         }
     }
 
