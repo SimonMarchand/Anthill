@@ -7,15 +7,13 @@ public class Pheromone {
 	
 	private static int quantitePheromone;
 	
+	
 	public Pheromone(int quantite){
 		this.quantitePheromone = quantite;
 	}
 	
-	public int getQuantitePheromone(){
-		return quantitePheromone;
-	}
 	
-	public void depotPheromone(int quantite){
-		quantitePheromone+= quantite;
-	}
+	public int getQuantitePheromone(){ return quantitePheromone; }
+	public static void setQuantitePheromone(int quantitePheromone) { Pheromone.quantitePheromone = quantitePheromone; }
+	
 }
