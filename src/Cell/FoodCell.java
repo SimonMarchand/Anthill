@@ -21,4 +21,9 @@ public class FoodCell extends Cell {
 	public void setFood(Food food){
 		this.food = food;
 	}
+	
+	public boolean hasFood(){
+		if(food.getQuantity()==0) 	return false;
+		else						return true;
+	}
 }
