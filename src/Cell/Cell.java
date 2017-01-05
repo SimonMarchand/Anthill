@@ -6,10 +6,12 @@ package Cell;
 public class Cell {
 
 	private int pheromoneHistory;
+	private Coordinates coord;
 	
-	public Cell(int pheromoneHistory) {
+	public Cell(int pheromoneHistory,int x, int y) {
 		super();
 		this.pheromoneHistory = pheromoneHistory;
+		coord = new Coordinates(x,y);
 	}
 
 }
