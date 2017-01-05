@@ -151,7 +151,7 @@ public class Ant {
 
         // Enfin elle récupère la nourriture si elle est sur une case de nourriture, ou elle en dépose si elle est arrivée à la fourmillière
         // Ainsi on obtient une trace de phéromones sur tout le trajet (case nourriture comprise), sauf sur la fourmillière.
-        if(cell.getClass().getName() == "FoodCell" && !this.hasFood() && cell.hasFood()) {
+        if(cell.getClass().getName() == "FoodCell" && !this.hasFood() && ((FoodCell) cell).hasFood()) {
             this.takeFood((FoodCell) cell);
         }
         else if(cell.getClass().getName() == "AnthillCell" && this.hasFood()) {
