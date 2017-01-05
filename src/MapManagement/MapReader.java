@@ -18,6 +18,8 @@ public class MapReader {
         // Longueur et largeur de la map a charger
         int length = getTextFileLength(url);
         int width = getTextFileWidth(url);
+        
+        
         Cell[][] grid = new Cell[width][length];
         
         // Lecture du fichier .txt et transformation en une grille de cellules
@@ -28,9 +30,16 @@ public class MapReader {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line ;
             
+            System.out.println("Largeur de la map : "+ width);
+            System.out.println("Longueur de la map : "+ length);
+            
+            
+            System.out.println("Lecture fichier en cours ");
+            
             while((line=bufferedReader.readLine())!=null){
                 for ( int x = 0 ; x < width ; x++ ){
                     
+                    System.out.print(""+line.charAt(x));
                     // Distinction des différent type de cellules en fonction du charactère lu
                     switch (""+line.charAt(x)){
                         case hashtag :
@@ -75,17 +84,21 @@ public class MapReader {
                         case empty :
                             grid[c][x] = new EmptyCell(0);
                             break;
-                            
                     }
-                    
                     c++;
                 }
+                System.out.println("");
             }
             
         fileReader.close();
         bufferedReader.close();
             
+        System.out.println("Lecture du fichier ok");
+        
         }catch(IOException e){
+            e.getMessage();
+            System.out.println("Input/Output Error, Impossible de lire le fichier");
+            
         }
         
         return new Map(grid);
@@ -113,7 +126,7 @@ public class MapReader {
     }
     
     private static int getTextFileWidth(String url){
-        int i=0;
+        int i=1;
         try {
             
             FileReader fileReader = new FileReader(url);
@@ -127,7 +140,7 @@ public class MapReader {
         }catch(IOException e){
         }
         
-        return i;
+        return i+1;
     }
     
 }
