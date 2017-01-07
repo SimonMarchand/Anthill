@@ -36,6 +36,7 @@ public class Ant {
 
     /**
      * Constructeur dans le cas où l'orientation n'est pas donnée. Elle est donc donnée aléatoirement
+     *
      * @param position
      * @param antHill
      * @param behaviour
@@ -52,6 +53,7 @@ public class Ant {
 
     /**
      * Constructeur avec orientation donnée en paramètre
+     *
      * @param position
      * @param antHill
      * @param behaviour
@@ -115,14 +117,16 @@ public class Ant {
 
     /**
      * Retourne true si la fourmi transporte de la nourriture, false sinon
+     *
      * @return
      */
     public boolean hasFood() {
-        return this.getFood()!=null;
+        return this.getFood() != null;
     }
 
     /**
      * Retourne la cellule actuelle de la fourmi
+     *
      * @return Cell cell
      */
     public Cell getCurrentCell() {
@@ -138,7 +142,7 @@ public class Ant {
      */
     public void move() {
         // Commence par déposer des phéromones sur la case actuelle si elle transporte de la nourriture
-        if(this.hasFood()) {
+        if (this.hasFood()) {
             this.getCurrentCell().putPheromones(PHEROMONES_CAPACITY);
         }
 
@@ -147,16 +151,15 @@ public class Ant {
         this.position = cell.getCoord();
 
         // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
-        if(!this.hasFood()) {
+        if (!this.hasFood()) {
             this.backTrack.push(this.position);
         }
 
         // Enfin elle récupère la nourriture si elle est sur une case de nourriture, ou elle en dépose si elle est arrivée à la fourmillière
         // Ainsi on obtient une trace de phéromones sur tout le trajet (case nourriture comprise), sauf sur la fourmillière.
-        if(cell.getClass().getName() == "FoodCell" && !this.hasFood() && ((FoodCell) cell).hasFood()) {
+        if (cell.getClass().getName() == "FoodCell" && !this.hasFood() && ((FoodCell) cell).hasFood()) {
             this.takeFood((FoodCell) cell);
-        }
-        else if(cell.getClass().getName() == "AnthillCell" && this.hasFood()) {
+        } else if (cell.getClass().getName() == "AnthillCell" && this.hasFood()) {
             this.putFood((AnthillCell) cell);
             this.backTrack = new Stack<Coordinates>();
         }
@@ -164,12 +167,10 @@ public class Ant {
 
     private void takeFood(FoodCell cell) {
         Food food = cell.getFood();
-        if(food.getQuantity() >= FOOD_CAPACITY) {
+        if (food.getQuantity() >= FOOD_CAPACITY) {
             this.food = new Food(FOOD_CAPACITY);
             food.setQuantity(food.getQuantity() - FOOD_CAPACITY);
-        }
-
-        else {
+        } else {
             this.food = new Food(food.getQuantity());
             food.setQuantity(0);
         }
@@ -178,5 +179,15 @@ public class Ant {
     private void putFood(AnthillCell cell) {
         cell.placeFood(this.getFood().getQuantity());
         this.food = null;
+    }
+
+    public static int getOrientationIndex(String orientation) {
+        for(int i = 0; i < Ant.ORIENTATIONS.length; i++) {
+            if(Ant.ORIENTATIONS[i] == orientation)
+                return i;
+        }
+
+        // Si l'orientation n'a pas été trouvée on retourne un index négatif pour détecter l'erreur
+        return -1;
     }
 }

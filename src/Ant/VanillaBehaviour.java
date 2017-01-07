@@ -11,6 +11,8 @@ public class VanillaBehaviour extends Behaviour {
     public Cell nextCell(Ant ant) {
         if(ant.hasFood()) return backToAnthill(ant);
 
+        this.setSurroundingCells(ant);
+
         return null;
     }
 }
