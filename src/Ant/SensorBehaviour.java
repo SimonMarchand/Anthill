@@ -7,6 +7,10 @@ import Cell.Cell;
  */
 public class SensorBehaviour extends Behaviour {
 
+    public SensorBehaviour(Ant ant) {
+        this.ant = ant;
+    }
+
     @Override
     public Cell nextCell() {
         if(ant.hasFood()) return backToAnthill();

@@ -7,9 +7,13 @@ import Cell.Cell;
  */
 public class VanillaBehaviour extends Behaviour {
 
+    public VanillaBehaviour(Ant ant) {
+        this.ant = ant;
+    }
+
     @Override
     public Cell nextCell() {
-        if(ant.hasFood()) return backToAnthill();
+        if (ant.hasFood()) return backToAnthill();
 
         this.setSurroundingCells();
 
