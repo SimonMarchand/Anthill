@@ -8,8 +8,8 @@ import Cell.Cell;
 public class SensorBehaviour extends Behaviour {
 
     @Override
-    public Cell nextCell(Ant ant) {
-        if(ant.hasFood()) return backToAnthill(ant);
+    public Cell nextCell() {
+        if(ant.hasFood()) return backToAnthill();
 
         return null;
     }

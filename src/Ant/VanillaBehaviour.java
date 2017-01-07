@@ -8,10 +8,10 @@ import Cell.Cell;
 public class VanillaBehaviour extends Behaviour {
 
     @Override
-    public Cell nextCell(Ant ant) {
-        if(ant.hasFood()) return backToAnthill(ant);
+    public Cell nextCell() {
+        if(ant.hasFood()) return backToAnthill();
 
-        this.setSurroundingCells(ant);
+        this.setSurroundingCells();
 
         return null;
     }
