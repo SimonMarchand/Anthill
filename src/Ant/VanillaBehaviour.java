@@ -21,6 +21,8 @@ public class VanillaBehaviour extends Behaviour {
         if (ant.hasFood()) return backToAnthill();
 
         this.setSurroundingCells();
+        this.setSurroundingEvaluations();
+        // Trier les surroundings par évaluation puis retourner la cell la plus appropriée
 
         return null;
     }
