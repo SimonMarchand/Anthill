@@ -14,6 +14,7 @@ public class VanillaBehaviour extends Behaviour {
 
     public VanillaBehaviour(Ant ant) {
         this.ant = ant;
+        ant.setBehaviour(this);
     }
 
     @Override

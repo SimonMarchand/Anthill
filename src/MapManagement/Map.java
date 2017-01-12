@@ -9,6 +9,7 @@ public class Map {
     private Cell[][] grid;
     // Renseigne la quantité totale de nourriture restante sur la carte
     private int foodLeft;
+    private boolean useSensors;
 
     public Map(Cell[][] grid) {
         this.grid = grid;
@@ -22,6 +23,14 @@ public class Map {
         this.foodLeft = foodLeft;
     }
 
+    public boolean useSensors() {
+        return useSensors;
+    }
+
+    public void setUseSensors(boolean useSensors) {
+        this.useSensors = useSensors;
+    }
+
     public Cell getCell(Coordinates coordinates) {
         return this.grid[coordinates.getX()][coordinates.getY()];
     }
@@ -30,7 +39,7 @@ public class Map {
     public void Read() {
         for (int x = 0; x < grid.length; x++) {
             for (int y = 0; y < grid[x].length; y++) {
-                if (grid[x][y] == null) System.out.println("\nx:" + x + "\ny:" + y);
+
                 String s = grid[x][y].getClass().getName();
 
                 switch (s) {
@@ -51,16 +60,16 @@ public class Map {
                 }
 
             }
-            System.out.println("");
+            // System.out.println("");
         }
     }
 
     public void printCell(int x, int y) {
 
         if (x <= grid.length && y <= grid[0].length) {
-            System.out.println(grid[x][y].getClass().getName().toString());
+            // System.out.println(grid[x][y].getClass().getName().toString());
         } else {
-            System.out.println("Index out of bounds");
+            // System.out.println("Index out of bounds");
         }
 
     }

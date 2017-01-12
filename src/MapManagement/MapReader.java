@@ -39,15 +39,15 @@ public class MapReader {
             String line;
 
 
-            System.out.println("width de la map : " + width);
-            System.out.println("Length de la map : " + length);
+            // System.out.println("width de la map : " + width);
+            // System.out.println("Length de la map : " + length);
 
-            System.out.println("Lecture fichier en cours ");
+            // System.out.println("Lecture fichier en cours ");
 
             while ((line = bufferedReader.readLine()) != null) {
                 for (int x = 0; x < width; x++) {
 
-                    System.out.print("" + line.charAt(x));
+                    //System.out.print("" + line.charAt(x));
                     // Distinction des différent type de cellules en fonction du charactère lu
                     switch ("" + line.charAt(x)) {
                         case hashtag:
@@ -69,17 +69,17 @@ public class MapReader {
                     }
                 }
                 c++;
-                System.out.println("");
+                // System.out.println("");
             }
 
             fileReader.close();
             bufferedReader.close();
 
-            System.out.println("Lecture du fichier ok");
+            // System.out.println("Lecture du fichier ok");
 
         } catch (IOException e) {
             e.getMessage();
-            System.out.println("Input/Output Error, Impossible de lire le fichier");
+            // System.out.println("Input/Output Error, Impossible de lire le fichier");
 
         }
 

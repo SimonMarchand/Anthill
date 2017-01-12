@@ -11,6 +11,7 @@ public class SensorBehaviour extends Behaviour {
 
     public SensorBehaviour(Ant ant) {
         this.ant = ant;
+        ant.setBehaviour(this);
     }
 
     @Override

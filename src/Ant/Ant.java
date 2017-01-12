@@ -42,15 +42,17 @@ public class Ant {
      *
      * @param position
      * @param antHill
-     * @param behaviour
      */
-    public Ant(Coordinates position, AnthillCell antHill, Behaviour behaviour) {
+    public Ant(Coordinates position, AnthillCell antHill) {
         this.position = position;
         this.antHill = antHill;
-        this.behaviour = behaviour;
         this.backTrack = new Stack<Coordinates>();
+        if (antHill.getMap().useSensors())
+            this.behaviour = new SensorBehaviour(this);
+        else
+            this.behaviour = new VanillaBehaviour(this);
 
-        Random r = new Random();
+            Random r = new Random();
         this.orientation = (ORIENTATIONS[r.nextInt(7)]);
     }
 
@@ -59,13 +61,11 @@ public class Ant {
      *
      * @param position
      * @param antHill
-     * @param behaviour
      * @param orientation
      */
-    public Ant(Coordinates position, AnthillCell antHill, Behaviour behaviour, String orientation) {
+    public Ant(Coordinates position, AnthillCell antHill, String orientation) {
         this.position = position;
         this.antHill = antHill;
-        this.behaviour = behaviour;
         this.backTrack = new Stack<Coordinates>();
         this.orientation = orientation;
     }
