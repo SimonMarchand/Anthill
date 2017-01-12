@@ -1,47 +1,55 @@
 package MapManagement;
+
 import Cell.*;
+
 /**
  * Created by felix on 03/01/17.
  */
 public class Map {
-    
-    Cell[][] grid;
-    
-    public Map(Cell[][] grid){
+    private Cell[][] grid;
 
-        this.grid = new Cell[][];
+    public Map(Cell[][] grid) {
         this.grid = grid;
     }
-    
-    public Cell getCell(Coordinates coordinates){
+
+    public Cell getCell(Coordinates coordinates) {
         return this.grid[coordinates.getX()][coordinates.getY()];
     }
-    
+
     // A compléter pour vérifier que la map soit juste, et qu'il n'y a pas eu d'erreur de lecture
-    public void Read(){
-        for(int x=0 ; x<grid.length;x++){
-            for(int y=0 ; y<grid[x].length;y++){
+    public void Read() {
+        for (int x = 0; x < grid.length; x++) {
+            for (int y = 0; y < grid[x].length; y++) {
+                if (grid[x][y] == null) System.out.println("\nx:" + x + "\ny:" + y);
                 String s = grid[x][y].getClass().getName();
-                
-                switch (s){
-                    case "Cell.AnthillCell": System.out.print("x");break;
-                    case "Cell.EmptyCell": System.out.print(" ");break;
-                    case "Cell.ObstacleCell": System.out.print("#");break;
-                    case "Cell.FoodCell": System.out.print("0");break;
-                    default : break;
+
+                switch (s) {
+                    case "Cell.AnthillCell":
+                        System.out.print("x");
+                        break;
+                    case "Cell.EmptyCell":
+                        System.out.print(" ");
+                        break;
+                    case "Cell.ObstacleCell":
+                        System.out.print("#");
+                        break;
+                    case "Cell.FoodCell":
+                        System.out.print("0");
+                        break;
+                    default:
+                        break;
                 }
-                
+
             }
             System.out.println("");
         }
     }
 
-    public void printCell(int x, int y){
+    public void printCell(int x, int y) {
 
-        if(x<=grid.length && y<=grid[0].length){
+        if (x <= grid.length && y <= grid[0].length) {
             System.out.println(grid[x][y].getClass().getName().toString());
-        }
-        else{
+        } else {
             System.out.println("Index out of bounds");
         }
 
