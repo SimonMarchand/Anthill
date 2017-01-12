@@ -11,6 +11,12 @@ import java.util.Random;
  * Created by felix on 03/01/17.
  */
 public abstract class Behaviour {
+    protected static float EVAL_MAX = 20;
+    protected static float EVAL_2 = 15;
+    protected static float EVAL_3 = 10;
+    protected static float EVAL_4 = 5;
+    protected static float EVAL_MIN = 0;
+
     // Contient toutes les cellules entourant la fourmi
     protected ArrayList<CellEvaluation> surroundings;
     protected Ant ant;
@@ -117,6 +123,27 @@ public abstract class Behaviour {
     }
 
     /**
+     * Permet de remplir le tableau d'évaluations, en utilisant la somme des pondérations des cellules environantes
+     */
+    protected void fillEvaluations() {
+        this.evaluations = new ArrayList<Float>();
+        float evaluationsSum = 0;
+
+        for(CellEvaluation cell : this.surroundings) {
+            evaluationsSum += cell.getEvaluation();
+        }
+
+        for (CellEvaluation cell : this.surroundings) {
+            cell.setEvaluation(cell.getEvaluation() / evaluationsSum);
+            // Si on a déjà des évaluations dans le tableau, on ajoute l'évaluation précédente du tableau
+            if(this.evaluations.size() != 0)
+                this.evaluations.add(cell.getEvaluation() + this.evaluations.get(this.evaluations.size() - 1));
+            else
+                this.evaluations.add(cell.getEvaluation());
+        }
+    }
+
+    /**
      * Retourne la cellule choisie aléatoirement par la fourmi à partir
      * du tableau d'évaluation rempli par les classes filles.
      *
@@ -133,19 +160,17 @@ public abstract class Behaviour {
          * En testant sur une égalité non stricte, on est sûrs de choisir en premier une case possédant une évaluation
          * non nulle, sauf dans le cas où le float tiré est égal à 0. Dans ce cas, on dit que la fourmi ne bouge pas pour
          * éviter des erreurs.
-          */
-        if(randomEvaluation == 0) {
+         */
+        if (randomEvaluation == 0) {
             cell = ant.getCurrentCell();
-        }
-        else if(randomEvaluation <= this.evaluations.get(0)) {
-            ant.setOrientation(Ant.ORIENTATIONS[ (Ant.getOrientationIndex(ant.getOrientation()) + 0) % 8 ]);
+        } else if (randomEvaluation <= this.evaluations.get(0)) {
+            ant.setOrientation(Ant.ORIENTATIONS[(Ant.getOrientationIndex(ant.getOrientation()) + 0) % 8]);
             cell = this.surroundings.get(0).getCell();
-        }
-        else {
+        } else {
             int i = 1;
             while (cell == null || i != this.evaluations.size()) {
-                if(randomEvaluation >= this.evaluations.get(i - 1) && randomEvaluation <= this.evaluations.get(i)) {
-                    ant.setOrientation(Ant.ORIENTATIONS[ (Ant.getOrientationIndex(ant.getOrientation()) + i) % 8 ]);
+                if (randomEvaluation >= this.evaluations.get(i - 1) && randomEvaluation <= this.evaluations.get(i)) {
+                    ant.setOrientation(Ant.ORIENTATIONS[(Ant.getOrientationIndex(ant.getOrientation()) + i) % 8]);
                     cell = this.surroundings.get(i).getCell();
                 }
                 i++;
@@ -153,13 +178,34 @@ public abstract class Behaviour {
         }
 
         // Si jamais la cellule est nulle, on fait en sorte que la fourmi ne bouge pas.
-        if(cell == null)
+        if (cell == null)
             cell = ant.getCurrentCell();
 
-        if(cell.getClass().getName() == "ObstacleCell")
-                cell = ant.getCurrentCell();
+        if (cell.getClass().getName() == "ObstacleCell")
+            cell = ant.getCurrentCell();
 
         return cell;
+    }
+
+    /**
+     * Set les evaluations de base pour les cases environnantes
+     */
+    protected void setBasicSurroundingEvaluations() {
+        this.evaluations = new ArrayList<Float>();
+
+        for (int i = 0; i < this.surroundings.size(); i++) {
+            if (i == 0) {
+                this.surroundings.get(i).setEvaluation(EVAL_MAX);
+            } else if (i == 1 || i == this.surroundings.size() - 1) {
+                this.surroundings.get(i).setEvaluation(EVAL_2);
+            } else if (i == 2 || i == this.surroundings.size() - 2) {
+                this.surroundings.get(i).setEvaluation(EVAL_3);
+            } else if (i == 3 || i == this.surroundings.size() - 3) {
+                this.surroundings.get(i).setEvaluation(EVAL_4);
+            } else {
+                this.surroundings.get(i).setEvaluation(EVAL_MIN);
+            }
+        }
     }
 
 }

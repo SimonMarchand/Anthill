@@ -15,6 +15,9 @@ import java.util.Stack;
 public class Ant {
     public static int PHEROMONES_CAPACITY = 1;
     public static int FOOD_CAPACITY = 1;
+    /**
+     * Evolution possible : passer a un enum pour les orientations.
+     */
     public static String[] ORIENTATIONS = {
             "N",
             "NE",
