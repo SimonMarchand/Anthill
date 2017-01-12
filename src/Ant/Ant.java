@@ -47,12 +47,8 @@ public class Ant {
         this.position = position;
         this.antHill = antHill;
         this.backTrack = new Stack<Coordinates>();
-        if (antHill.getMap().useSensors())
-            this.behaviour = new SensorBehaviour(this);
-        else
-            this.behaviour = new VanillaBehaviour(this);
 
-            Random r = new Random();
+        Random r = new Random();
         this.orientation = (ORIENTATIONS[r.nextInt(7)]);
     }
 
@@ -151,6 +147,7 @@ public class Ant {
 
         // Puis elle se déplace en demandant à son comportement vers quelle case se diriger
         Cell cell = this.behaviour.nextCell();
+
         this.position = cell.getCoord();
 
         // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
@@ -160,9 +157,9 @@ public class Ant {
 
         // Enfin elle récupère la nourriture si elle est sur une case de nourriture, ou elle en dépose si elle est arrivée à la fourmillière
         // Ainsi on obtient une trace de phéromones sur tout le trajet (case nourriture comprise), sauf sur la fourmillière.
-        if (cell.getClass().getName() == "Cell.FoodCell" && !this.hasFood() && ((FoodCell) cell).hasFood()) {
+        if (cell instanceof FoodCell && !this.hasFood() && ((FoodCell) cell).hasFood()) {
             this.takeFood((FoodCell) cell);
-        } else if (cell.getClass().getName() == "Cell.AnthillCell" && this.hasFood()) {
+        } else if (cell instanceof AnthillCell && this.hasFood()) {
             this.putFood((AnthillCell) cell);
             this.backTrack = new Stack<Coordinates>();
         }

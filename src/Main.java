@@ -23,10 +23,7 @@ public class Main {
             i = scanner.nextInt();
         }
 
-        if (i == 1)
-            map.setUseSensors(false);
-        else
-            map.setUseSensors(true);
+        map.setBehaviours(i == 2);
 
         i = 0;
         while (map.getFoodLeft() > 0) {

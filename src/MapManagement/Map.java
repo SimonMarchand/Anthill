@@ -1,5 +1,6 @@
 package MapManagement;
 
+import Ant.*;
 import Cell.*;
 
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ public class Map {
     private Cell[][] grid;
     // Renseigne la quantité totale de nourriture restante sur la carte
     private int foodLeft;
-    private boolean useSensors;
     private ArrayList<AnthillCell> anthills;
 
     public Map(Cell[][] grid) {
@@ -25,14 +25,6 @@ public class Map {
 
     public void setFoodLeft(int foodLeft) {
         this.foodLeft = foodLeft;
-    }
-
-    public boolean useSensors() {
-        return useSensors;
-    }
-
-    public void setUseSensors(boolean useSensors) {
-        this.useSensors = useSensors;
     }
 
     public ArrayList<AnthillCell> getAnthills() {
@@ -115,4 +107,20 @@ public class Map {
     public void addAnthill(AnthillCell anthill) {
         this.anthills.add(anthill);
     }
+
+    /**
+     * Permet de set le behaviour de toutes les fourmis avec senseurs ou non
+     * @param sensors
+     */
+    public void setBehaviours(boolean sensors) {
+        for (AnthillCell anthill : this.anthills) {
+            for (Ant ant : anthill.getAnts()) {
+                if(sensors)
+                    ant.setBehaviour(new SensorBehaviour(ant));
+                else
+                    ant.setBehaviour(new VanillaBehaviour(ant));
+            }
+        }
+    }
+
 }

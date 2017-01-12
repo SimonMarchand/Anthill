@@ -1,8 +1,7 @@
 package Ant;
 
 import Cell.Cell;
-
-import java.util.ArrayList;
+import Cell.ObstacleCell;
 
 /**
  * Created by felix on 03/01/17.
@@ -18,7 +17,10 @@ public class SensorBehaviour extends Behaviour {
     public Cell nextCell() {
         if (ant.hasFood()) return backToAnthill();
 
-        return null;
+        this.setSurroundingCells();
+        this.setSurroundingEvaluations();
+
+        return getChosenCell();
     }
 
     @Override
@@ -26,7 +28,7 @@ public class SensorBehaviour extends Behaviour {
         setBasicSurroundingEvaluations();
 
         for(CellEvaluation cellEvaluation : surroundings) {
-            if(cellEvaluation.getCell().getClass().getName() == "Cell.ObstacleCell")
+            if(cellEvaluation.getCell() instanceof ObstacleCell)
                 cellEvaluation.setEvaluation(0);
             else
                 cellEvaluation.setEvaluation(cellEvaluation.getEvaluation() + getPheromonesFromCell(cellEvaluation.getCell()));

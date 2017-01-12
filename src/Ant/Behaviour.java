@@ -1,6 +1,7 @@
 package Ant;
 
 import Cell.Cell;
+import Cell.ObstacleCell;
 import Cell.Coordinates;
 import MapManagement.Map;
 
@@ -168,20 +169,30 @@ public abstract class Behaviour {
             cell = this.surroundings.get(0).getCell();
         } else {
             int i = 1;
-            while (cell == null || i != this.evaluations.size()) {
+            while (cell == null && i < this.evaluations.size()) {
                 if (randomEvaluation >= this.evaluations.get(i - 1) && randomEvaluation <= this.evaluations.get(i)) {
-                    ant.setOrientation(Ant.ORIENTATIONS[(Ant.getOrientationIndex(ant.getOrientation()) + i) % 8]);
+                    ant.setOrientation(Ant.ORIENTATIONS[(Ant.getOrientationIndex(ant.getOrientation()) + i) % Ant.ORIENTATIONS.length]);
                     cell = this.surroundings.get(i).getCell();
                 }
                 i++;
             }
+
+            /*for(float evaluation : this.evaluations) {
+                System.out.println("Evaluation : " + evaluation);
+            }
+            System.out.println("Evaluation 6 : " + evaluations.get(6));
+            System.out.println(randomEvaluation <= evaluations.get(6));
+            System.out.println("Random : " + randomEvaluation);
+            System.out.println("i : " + i);
+            System.exit(0);*/
+
         }
 
         // Si jamais la cellule est nulle, on fait en sorte que la fourmi ne bouge pas.
         if (cell == null)
             cell = ant.getCurrentCell();
 
-        if (cell.getClass().getName() == "Cell.ObstacleCell")
+        if (cell instanceof ObstacleCell)
             cell = ant.getCurrentCell();
 
         return cell;
