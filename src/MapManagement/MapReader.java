@@ -14,13 +14,17 @@ public class MapReader {
         final String zero = "0";
         final String X = "x";
         final String empty = " ";
+
+        final int FOOD_QUANTITY = 10;
       
         // Longueur et largeur de la map a charger
         int length = getTextFileLength(url);
         int width = getTextFileWidth(url);
         
         
-        Cell[][] grid = new Cell[width][length];
+        Cell[][] grid = new Cell[length][width];
+        Map map = new Map(grid);
+        Food food = new Food(FOOD_QUANTITY);
         
         // Lecture du fichier .txt et transformation en une grille de cellules
         try {
@@ -29,64 +33,37 @@ public class MapReader {
             FileReader fileReader = new FileReader(url);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line ;
-            
-            System.out.println("Largeur de la map : "+ width);
-            System.out.println("Longueur de la map : "+ length);
-            
+
+
+            System.out.println("width de la map : "+ width);
+            System.out.println("Length de la map : "+ length);
             
             System.out.println("Lecture fichier en cours ");
             
             while((line=bufferedReader.readLine())!=null){
-                for ( int x = 0 ; x < width ; x++ ){
+                for ( int x = 0 ; x < width -1 ; x++ ){
                     
                     System.out.print(""+line.charAt(x));
                     // Distinction des différent type de cellules en fonction du charactère lu
                     switch (""+line.charAt(x)){
                         case hashtag :
-                            grid[c][x] = new ObstacleCell();
+                            grid[c][x] = new ObstacleCell(new Coordinates(c,x),map);
                             break;
                             
                         case zero :
-                            grid[c][x] = new FoodCell(0);
+                            grid[c][x] = new FoodCell(new Coordinates(c,x),map,food);
                             break;
-                        case "1" :
-                            grid[c][x] = new FoodCell(1);
-                            break;    
-                        case "2" :
-                            grid[c][x] = new FoodCell(2);
-                            break;
-                        case "3" :
-                            grid[c][x] = new FoodCell(3);
-                            break; 
-                        case "4" :
-                            grid[c][x] = new FoodCell(4);
-                            break;
-                        case "5" :
-                            grid[c][x] = new FoodCell(5);
-                            break; 
-                        case "6" :
-                            grid[c][x] = new FoodCell(6);
-                            break;
-                        case "7" :
-                            grid[c][x] = new FoodCell(7);
-                            break;
-                        case "8" :
-                            grid[c][x] = new FoodCell(8);
-                            break;
-                        case "9" :
-                            grid[c][x] = new FoodCell(9);
-                            break;   
                             
                         case X :
-                            grid[c][x] = new AnthillCell();
+                            grid[c][x] = new AnthillCell(new Coordinates(c,x),map);
                             break;
                             
                         case empty :
-                            grid[c][x] = new EmptyCell(0);
+                            grid[c][x] = new EmptyCell(new Coordinates(c,x),map);
                             break;
                     }
-                    c++;
                 }
+                c++;
                 System.out.println("");
             }
             
@@ -101,7 +78,7 @@ public class MapReader {
             
         }
         
-        return new Map(grid);
+        return map;
     }
     
     private static int getTextFileLength(String url){

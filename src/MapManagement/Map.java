@@ -19,13 +19,14 @@ public class Map {
     public void Read(){
         for(int x=0 ; x<grid.length;x++){
             for(int y=0 ; y<grid[x].length;y++){
-                String s = grid[x][y].getClass().getName().toString();
+                String s = grid[x][y].getClass().getName();
                 
                 switch (s){
                     case "AnthillCell": System.out.print("x");break;
                     case "EmptyCell": System.out.print(" ");break;
                     case "ObstacleCell": System.out.print("#");break;
                     case "FoodCell": System.out.print("0");break;
+                    default : break;
                 }
                 
             }
