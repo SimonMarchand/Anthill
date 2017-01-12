@@ -26,7 +26,7 @@ public class SensorBehaviour extends Behaviour {
         setBasicSurroundingEvaluations();
 
         for(CellEvaluation cellEvaluation : surroundings) {
-            if(cellEvaluation.getCell().getClass().getName() == "ObstacleCell")
+            if(cellEvaluation.getCell().getClass().getName() == "Cell.ObstacleCell")
                 cellEvaluation.setEvaluation(0);
             else
                 cellEvaluation.setEvaluation(cellEvaluation.getEvaluation() + getPheromonesFromCell(cellEvaluation.getCell()));

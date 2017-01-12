@@ -2,6 +2,8 @@ package MapManagement;
 
 import Cell.*;
 
+import java.util.ArrayList;
+
 /**
  * Created by felix on 03/01/17.
  */
@@ -10,9 +12,11 @@ public class Map {
     // Renseigne la quantité totale de nourriture restante sur la carte
     private int foodLeft;
     private boolean useSensors;
+    private ArrayList<AnthillCell> anthills;
 
     public Map(Cell[][] grid) {
         this.grid = grid;
+        this.anthills = new ArrayList<AnthillCell>();
     }
 
     public int getFoodLeft() {
@@ -31,8 +35,22 @@ public class Map {
         this.useSensors = useSensors;
     }
 
+    public ArrayList<AnthillCell> getAnthills() {
+        return anthills;
+    }
+
+    public void setAnthills(ArrayList<AnthillCell> anthills) {
+        this.anthills = anthills;
+    }
+
     public Cell getCell(Coordinates coordinates) {
-        return this.grid[coordinates.getX()][coordinates.getY()];
+        if(coordinates.getX() < this.grid.length && coordinates.getY() < this.grid[0].length)
+            return this.grid[coordinates.getX()][coordinates.getY()];
+        else {
+            System.out.println("Erreur : impossible d'accéder aux coordonnées x:" + coordinates.getX() + "y:" + coordinates.getY());
+            System.exit(0);
+            return null;
+        }
     }
 
     // A compléter pour vérifier que la map soit juste, et qu'il n'y a pas eu d'erreur de lecture
@@ -90,4 +108,11 @@ public class Map {
         this.foodLeft -= food;
     }
 
+    /**
+     * Permet d'ajouter une fourmilliere a la map
+     * @param anthill
+     */
+    public void addAnthill(AnthillCell anthill) {
+        this.anthills.add(anthill);
+    }
 }

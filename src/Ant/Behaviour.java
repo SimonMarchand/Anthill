@@ -48,7 +48,7 @@ public abstract class Behaviour {
             this.surroundings.add(
                     new CellEvaluation(
                             getCellDirection(Ant.ORIENTATIONS[
-                                    (Ant.getOrientationIndex(ant.getOrientation()) + i)
+                                    (Ant.getOrientationIndex(ant.getOrientation()) + i) % Ant.ORIENTATIONS.length
                                     ]
                             )
                     )
@@ -164,7 +164,7 @@ public abstract class Behaviour {
         if (randomEvaluation == 0) {
             cell = ant.getCurrentCell();
         } else if (randomEvaluation <= this.evaluations.get(0)) {
-            ant.setOrientation(Ant.ORIENTATIONS[(Ant.getOrientationIndex(ant.getOrientation()) + 0) % 8]);
+            ant.setOrientation(Ant.ORIENTATIONS[(Ant.getOrientationIndex(ant.getOrientation()) + 0) % Ant.ORIENTATIONS.length]);
             cell = this.surroundings.get(0).getCell();
         } else {
             int i = 1;
@@ -181,7 +181,7 @@ public abstract class Behaviour {
         if (cell == null)
             cell = ant.getCurrentCell();
 
-        if (cell.getClass().getName() == "ObstacleCell")
+        if (cell.getClass().getName() == "Cell.ObstacleCell")
             cell = ant.getCurrentCell();
 
         return cell;
