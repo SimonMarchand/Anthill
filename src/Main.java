@@ -25,18 +25,21 @@ public class Main {
 
         map.setBehaviours(i == 2);
 
-        i = 0;
+        runTest(map);
+    }
+
+    public static int runTest(Map map) {
+        int i = 0;
         while (map.getFoodLeft() > 0) {
             for (AnthillCell anthill : map.getAnthills()) {
                 for (Ant ant : anthill.getAnts()) {
                     ant.move();
-                    System.out.println("Position fourmi : x:" + ant.getPosition().getX() + " y:" + ant.getPosition().getY());
                 }
             }
             i++;
-//            System.out.println("Nourriture restante : " + map.getFoodLeft());
         }
 
         System.out.println("Nombre d'itérations : " + i);
+        return i;
     }
 }

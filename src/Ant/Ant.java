@@ -141,19 +141,16 @@ public class Ant {
      */
     public void move() {
         // Commence par déposer des phéromones sur la case actuelle si elle transporte de la nourriture
-        if (this.hasFood()) {
+        if (this.hasFood())
             this.getCurrentCell().putPheromones(PHEROMONES_CAPACITY);
-        }
+        // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
+        else
+            this.backTrack.push(this.position);
 
-        // Puis elle se déplace en demandant à son comportement vers quelle case se diriger
+        // Déplacement en demandant à son comportement vers quelle case se diriger
         Cell cell = this.behaviour.nextCell();
 
         this.position = cell.getCoord();
-
-        // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
-        if (!this.hasFood()) {
-            this.backTrack.push(this.position);
-        }
 
         // Enfin elle récupère la nourriture si elle est sur une case de nourriture, ou elle en dépose si elle est arrivée à la fourmillière
         // Ainsi on obtient une trace de phéromones sur tout le trajet (case nourriture comprise), sauf sur la fourmillière.
@@ -172,12 +169,8 @@ public class Ant {
             this.food = new Food(FOOD_CAPACITY);
 
             food.setQuantity(food.getQuantity() - FOOD_CAPACITY);
-
-            cell.getMap().removeFood(FOOD_CAPACITY);
         } else {
             this.food = new Food(food.getQuantity());
-
-            cell.getMap().removeFood(food.getQuantity());
 
             food.setQuantity(0);
         }
@@ -185,6 +178,7 @@ public class Ant {
 
     private void putFood(AnthillCell cell) {
         cell.placeFood(this.getFood().getQuantity());
+        cell.getMap().removeFood(this.getFood().getQuantity());
         this.food = null;
     }
 

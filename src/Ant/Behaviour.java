@@ -44,16 +44,11 @@ public abstract class Behaviour {
     protected void setSurroundingCells() {
         this.surroundings = new ArrayList<CellEvaluation>();
 
+        int antOrientationIndex = Ant.getOrientationIndex(ant.getOrientation());
         // Ajoute les cases une par une, en commençant par la case en face de la fourmi et en tournant dans le sens horaire
         for (int i = 0; i < 8; i++) {
-            this.surroundings.add(
-                    new CellEvaluation(
-                            getCellDirection(Ant.ORIENTATIONS[
-                                    (Ant.getOrientationIndex(ant.getOrientation()) + i) % Ant.ORIENTATIONS.length
-                                    ]
-                            )
-                    )
-            );
+            String direction = Ant.ORIENTATIONS[(antOrientationIndex + i) % Ant.ORIENTATIONS.length];
+            this.surroundings.add(new CellEvaluation(getCellDirection(direction)));
         }
     }
 
@@ -77,7 +72,7 @@ public abstract class Behaviour {
 
         switch (direction) {
             case "N":
-                coordinates = new Coordinates(ant.getPosition().getX(), ant.getPosition().getY() + 1);
+                coordinates = new Coordinates(ant.getPosition().getX() + 1, ant.getPosition().getY());
                 cell = map.getCell(coordinates);
                 break;
 
@@ -87,7 +82,7 @@ public abstract class Behaviour {
                 break;
 
             case "E":
-                coordinates = new Coordinates(ant.getPosition().getX() + 1, ant.getPosition().getY());
+                coordinates = new Coordinates(ant.getPosition().getX(), ant.getPosition().getY() + 1);
                 cell = map.getCell(coordinates);
                 break;
 
@@ -107,12 +102,12 @@ public abstract class Behaviour {
                 break;
 
             case "W":
-                coordinates = new Coordinates(ant.getPosition().getX() - 1, ant.getPosition().getY());
+                coordinates = new Coordinates(ant.getPosition().getX(), ant.getPosition().getY() - 1);
                 cell = map.getCell(coordinates);
                 break;
 
             case "NW":
-                coordinates = new Coordinates(ant.getPosition().getX() - 1, ant.getPosition().getY() + 1);
+                coordinates = new Coordinates(ant.getPosition().getX() + 1, ant.getPosition().getY() - 1);
                 cell = map.getCell(coordinates);
                 break;
 
@@ -176,16 +171,6 @@ public abstract class Behaviour {
                 }
                 i++;
             }
-
-            /*for(float evaluation : this.evaluations) {
-                System.out.println("Evaluation : " + evaluation);
-            }
-            System.out.println("Evaluation 6 : " + evaluations.get(6));
-            System.out.println(randomEvaluation <= evaluations.get(6));
-            System.out.println("Random : " + randomEvaluation);
-            System.out.println("i : " + i);
-            System.exit(0);*/
-
         }
 
         // Si jamais la cellule est nulle, on fait en sorte que la fourmi ne bouge pas.
