@@ -7,9 +7,19 @@ import Cell.*;
  */
 public class Map {
     private Cell[][] grid;
+    // Renseigne la quantité totale de nourriture restante sur la carte
+    private int foodLeft;
 
     public Map(Cell[][] grid) {
         this.grid = grid;
+    }
+
+    public int getFoodLeft() {
+        return foodLeft;
+    }
+
+    public void setFoodLeft(int foodLeft) {
+        this.foodLeft = foodLeft;
     }
 
     public Cell getCell(Coordinates coordinates) {
@@ -54,4 +64,21 @@ public class Map {
         }
 
     }
+
+    /**
+     * Permet d'ajouter la quantité donnée de nourriture à foodLeft
+     * @param food
+     */
+    public void addFood(int food) {
+        this.foodLeft += food;
+    }
+
+    /**
+     * Permet de retirer la quantité donnée de nourriture à foodLeft
+     * @param food
+     */
+    public void removeFood(int food) {
+        this.foodLeft -= food;
+    }
+
 }

@@ -56,6 +56,7 @@ public class MapReader {
 
                         case zero:
                             grid[c][x] = new FoodCell(new Coordinates(c, x), map, food);
+                            map.addFood(food.getQuantity());
                             break;
 
                         case X:

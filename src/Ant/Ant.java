@@ -170,11 +170,18 @@ public class Ant {
 
     private void takeFood(FoodCell cell) {
         Food food = cell.getFood();
+
         if (food.getQuantity() >= FOOD_CAPACITY) {
             this.food = new Food(FOOD_CAPACITY);
+
             food.setQuantity(food.getQuantity() - FOOD_CAPACITY);
+
+            cell.getMap().removeFood(FOOD_CAPACITY);
         } else {
             this.food = new Food(food.getQuantity());
+
+            cell.getMap().removeFood(food.getQuantity());
+
             food.setQuantity(0);
         }
     }
@@ -185,8 +192,8 @@ public class Ant {
     }
 
     public static int getOrientationIndex(String orientation) {
-        for(int i = 0; i < Ant.ORIENTATIONS.length; i++) {
-            if(Ant.ORIENTATIONS[i] == orientation)
+        for (int i = 0; i < Ant.ORIENTATIONS.length; i++) {
+            if (Ant.ORIENTATIONS[i] == orientation)
                 return i;
         }
 
