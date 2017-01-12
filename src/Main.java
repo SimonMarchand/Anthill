@@ -25,7 +25,8 @@ public class Main {
 
         map.setBehaviours(i == 2);
 
-        runTest(map);
+        int nbIterations = runTest(map);
+        System.out.println("Nombre d'itérations : " + nbIterations);
     }
 
     public static int runTest(Map map) {
@@ -39,7 +40,6 @@ public class Main {
             i++;
         }
 
-        System.out.println("Nombre d'itérations : " + i);
         return i;
     }
 }
