@@ -8,6 +8,8 @@ public class Map {
     Cell[][] grid;
     
     public Map(Cell[][] grid){
+
+        this.grid = new Cell[][];
         this.grid = grid;
     }
     
@@ -22,10 +24,10 @@ public class Map {
                 String s = grid[x][y].getClass().getName();
                 
                 switch (s){
-                    case "AnthillCell": System.out.print("x");break;
-                    case "EmptyCell": System.out.print(" ");break;
-                    case "ObstacleCell": System.out.print("#");break;
-                    case "FoodCell": System.out.print("0");break;
+                    case "Cell.AnthillCell": System.out.print("x");break;
+                    case "Cell.EmptyCell": System.out.print(" ");break;
+                    case "Cell.ObstacleCell": System.out.print("#");break;
+                    case "Cell.FoodCell": System.out.print("0");break;
                     default : break;
                 }
                 
@@ -33,5 +35,15 @@ public class Map {
             System.out.println("");
         }
     }
-    
+
+    public void printCell(int x, int y){
+
+        if(x<=grid.length && y<=grid[0].length){
+            System.out.println(grid[x][y].getClass().getName().toString());
+        }
+        else{
+            System.out.println("Index out of bounds");
+        }
+
+    }
 }
