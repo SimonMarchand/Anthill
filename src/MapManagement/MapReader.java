@@ -28,7 +28,6 @@ public class MapReader {
 
         Cell[][] grid = new Cell[length][width];
         Map map = new Map(grid);
-        Food food = new Food(FOOD_QUANTITY);
 
         // Lecture du fichier .txt et transformation en une grille de cellules
         try {
@@ -55,6 +54,7 @@ public class MapReader {
                             break;
 
                         case zero:
+                            Food food = new Food(FOOD_QUANTITY);
                             grid[c][x] = new FoodCell(new Coordinates(c, x), map, food);
                             map.addFood(food.getQuantity());
                             break;
