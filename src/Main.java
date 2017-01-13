@@ -27,16 +27,15 @@ public class Main {
 
         int nbIterations = runTest(map);
         System.out.println("Nombre d'itérations : " + nbIterations);
+        System.out.println("Historique des phéromones :");
+        System.out.println();
+        map.printPheromonesHistory();
     }
 
     public static int runTest(Map map) {
         int i = 0;
         while (map.getFoodLeft() > 0) {
-            for (AnthillCell anthill : map.getAnthills()) {
-                for (Ant ant : anthill.getAnts()) {
-                    ant.move();
-                }
-            }
+            map.runIteration();
             i++;
         }
 

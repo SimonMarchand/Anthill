@@ -125,14 +125,14 @@ public abstract class Behaviour {
         this.evaluations = new ArrayList<Float>();
         float evaluationsSum = 0;
 
-        for(CellEvaluation cell : this.surroundings) {
+        for (CellEvaluation cell : this.surroundings) {
             evaluationsSum += cell.getEvaluation();
         }
 
         for (CellEvaluation cell : this.surroundings) {
             cell.setEvaluation(cell.getEvaluation() / evaluationsSum);
             // Si on a déjà des évaluations dans le tableau, on ajoute l'évaluation précédente du tableau
-            if(this.evaluations.size() != 0)
+            if (this.evaluations.size() != 0)
                 this.evaluations.add(cell.getEvaluation() + this.evaluations.get(this.evaluations.size() - 1));
             else
                 this.evaluations.add(cell.getEvaluation());

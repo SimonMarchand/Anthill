@@ -36,7 +36,7 @@ public class Map {
     }
 
     public Cell getCell(Coordinates coordinates) {
-        if(coordinates.getX() < this.grid.length && coordinates.getY() < this.grid[0].length)
+        if (coordinates.getX() < this.grid.length && coordinates.getY() < this.grid[0].length)
             return this.grid[coordinates.getX()][coordinates.getY()];
         else {
             System.out.println("Erreur : impossible d'accéder aux coordonnées x:" + coordinates.getX() + "y:" + coordinates.getY());
@@ -46,46 +46,43 @@ public class Map {
     }
 
     // A compléter pour vérifier que la map soit juste, et qu'il n'y a pas eu d'erreur de lecture
-    public void Read() {
-        for (int x = 0; x < grid.length; x++) {
-            for (int y = 0; y < grid[x].length; y++) {
+    public void printMap() {
+        for (Cell[] cells : grid) {
+            for (Cell cell : cells) {
 
-                String s = grid[x][y].getClass().getName();
-
-                switch (s) {
-                    case "Cell.AnthillCell":
-                        System.out.print("x");
-                        break;
-                    case "Cell.EmptyCell":
-                        System.out.print(" ");
-                        break;
-                    case "Cell.ObstacleCell":
-                        System.out.print("#");
-                        break;
-                    case "Cell.FoodCell":
-                        System.out.print("0");
-                        break;
-                    default:
-                        break;
-                }
+                printCell(cell);
 
             }
-            // System.out.println("");
+            System.out.println();
         }
     }
 
-    public void printCell(int x, int y) {
+    public void printCell(Cell cell) {
 
-        if (x <= grid.length && y <= grid[0].length) {
-            // System.out.println(grid[x][y].getClass().getName().toString());
-        } else {
-            // System.out.println("Index out of bounds");
+        String s = cell.getClass().getName();
+
+        switch (s) {
+            case "Cell.AnthillCell":
+                System.out.print("  X");
+                break;
+            case "Cell.EmptyCell":
+                System.out.print("   ");
+                break;
+            case "Cell.ObstacleCell":
+                System.out.print("  #");
+                break;
+            case "Cell.FoodCell":
+                System.out.print("  0");
+                break;
+            default:
+                break;
         }
 
     }
 
     /**
      * Permet d'ajouter la quantité donnée de nourriture à foodLeft
+     *
      * @param food
      */
     public void addFood(int food) {
@@ -94,6 +91,7 @@ public class Map {
 
     /**
      * Permet de retirer la quantité donnée de nourriture à foodLeft
+     *
      * @param food
      */
     public void removeFood(int food) {
@@ -102,6 +100,7 @@ public class Map {
 
     /**
      * Permet d'ajouter une fourmilliere a la map
+     *
      * @param anthill
      */
     public void addAnthill(AnthillCell anthill) {
@@ -110,16 +109,49 @@ public class Map {
 
     /**
      * Permet de set le behaviour de toutes les fourmis avec senseurs ou non
+     *
      * @param sensors
      */
     public void setBehaviours(boolean sensors) {
         for (AnthillCell anthill : this.anthills) {
             for (Ant ant : anthill.getAnts()) {
-                if(sensors)
+                if (sensors)
                     ant.setBehaviour(new SensorBehaviour(ant));
                 else
                     ant.setBehaviour(new VanillaBehaviour(ant));
             }
+        }
+    }
+
+    /**
+     * Fait tourner une itération de déplacement de toutes les fourmis
+     */
+    public void runIteration() {
+        for (Cell[] cells : grid) {
+            for (Cell cell : cells) {
+                cell.loosePheromones();
+            }
+        }
+
+        for (AnthillCell anthill : anthills) {
+            for (Ant ant : anthill.getAnts()) {
+                ant.move();
+            }
+        }
+    }
+
+    /**
+     * Affiche l'historique de tous les historiques de phéromones sur la carte
+     */
+    public void printPheromonesHistory() {
+        for (Cell[] cells : grid) {
+            for (Cell cell : cells) {
+                if (cell instanceof EmptyCell)
+                    System.out.printf("%3d", cell.getPheromonesHistory());
+                else
+                    printCell(cell);
+            }
+            System.out.println();
         }
     }
 

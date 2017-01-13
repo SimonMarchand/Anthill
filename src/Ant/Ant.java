@@ -143,7 +143,7 @@ public class Ant {
         // Commence par déposer des phéromones sur la case actuelle si elle transporte de la nourriture
         if (this.hasFood())
             this.getCurrentCell().putPheromones(PHEROMONES_CAPACITY);
-        // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
+            // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
         else
             this.backTrack.push(this.position);
 

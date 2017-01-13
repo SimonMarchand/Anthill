@@ -27,8 +27,8 @@ public class SensorBehaviour extends Behaviour {
     protected void setSurroundingEvaluations() {
         setBasicSurroundingEvaluations();
 
-        for(CellEvaluation cellEvaluation : surroundings) {
-            if(cellEvaluation.getCell() instanceof ObstacleCell)
+        for (CellEvaluation cellEvaluation : surroundings) {
+            if (cellEvaluation.getCell() instanceof ObstacleCell)
                 cellEvaluation.setEvaluation(0);
             else
                 cellEvaluation.setEvaluation(cellEvaluation.getEvaluation() + getPheromonesFromCell(cellEvaluation.getCell()));
@@ -40,6 +40,7 @@ public class SensorBehaviour extends Behaviour {
     /**
      * Retourne le nombre de pheromones sur la case si elle en a, ou 0 si elle n'en a pas. Possibilite d'ajouter
      * une ponderation par le futur dans cette fonction.
+     *
      * @param cell
      * @return float
      */

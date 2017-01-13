@@ -7,37 +7,65 @@ import MapManagement.Map;
  */
 public class Cell {
 
-	protected int pheromonesHistory;
-	protected Coordinates coord;
-	protected Pheromone pheromone;
-	protected Map map;
-	
-	
-	public Cell(Coordinates coord, Map map) {
-		this.pheromonesHistory = 0;
-		this.coord = coord;
-		this.pheromone = new Pheromone(0);
-		this.map = map;
-	}
-	
-	
-	public int getPheromonesHistory() { return pheromonesHistory; }
-	public void setPheromonesHistory(int pheromonesHistory) { this.pheromonesHistory = pheromonesHistory; }
+    protected int pheromonesHistory;
+    protected Coordinates coord;
+    protected Pheromone pheromone;
+    protected Map map;
+    final protected static int LOST_PHEROMONES = 1;
 
-	public Coordinates getCoord() { return coord; }
-	public void setCoord(Coordinates coord) { this.coord = coord; }
 
-	public Pheromone getPheromone() { return pheromone; }
-	public void setPheromone(Pheromone pheromone) { this.pheromone = pheromone; }
+    public Cell(Coordinates coord, Map map) {
+        this.pheromonesHistory = 0;
+        this.coord = coord;
+        this.pheromone = new Pheromone(0);
+        this.map = map;
+    }
 
-	public Map getMap() { return map; }
-	public void setMap(Map map) { this.map = map; }
 
-	
-	public void putPheromones(int nbPheromone){
-		this.pheromonesHistory += nbPheromone;
-		int totPheromones = this.pheromone.getQuantitePheromone() + nbPheromone;
-		this.pheromone.setQuantitePheromone(totPheromones); 
-	}
+    public int getPheromonesHistory() {
+        return pheromonesHistory;
+    }
+
+    public void setPheromonesHistory(int pheromonesHistory) {
+        this.pheromonesHistory = pheromonesHistory;
+    }
+
+    public Coordinates getCoord() {
+        return coord;
+    }
+
+    public void setCoord(Coordinates coord) {
+        this.coord = coord;
+    }
+
+    public Pheromone getPheromone() {
+        return pheromone;
+    }
+
+    public void setPheromone(Pheromone pheromone) {
+        this.pheromone = pheromone;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+
+    public void putPheromones(int nbPheromone) {
+        this.pheromonesHistory += nbPheromone;
+        int totPheromones = this.pheromone.getQuantitePheromone() + nbPheromone;
+        this.pheromone.setQuantitePheromone(totPheromones);
+    }
+
+    public void loosePheromones() {
+        if (this.pheromone.getQuantitePheromone() > LOST_PHEROMONES)
+            this.pheromone.setQuantitePheromone(this.pheromone.getQuantitePheromone() - LOST_PHEROMONES);
+        else
+            this.pheromone.setQuantitePheromone(0);
+    }
 
 }
