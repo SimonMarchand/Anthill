@@ -23,6 +23,15 @@ public class Main {
             i = scanner.nextInt();
         }
 
+        System.out.println("Choisissez le nombre de fourmis par fourmillière : ");
+        i = scanner.nextInt();
+        while (i < 0) {
+            System.out.println("Veuillez saisir une valeur valide.");
+            i = scanner.nextInt();
+        }
+
+        AnthillCell.setAntsQuantity(i);
+
         map.setBehaviours(i == 2);
 
         int nbIterations = runTest(map);

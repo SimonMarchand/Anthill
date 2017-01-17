@@ -12,7 +12,7 @@ public class AnthillCell extends Cell {
     private int foodQuantity;
     private ArrayList<Ant> ants;
     // Quantite de fourmis generees pour chaque fourmilliere
-    private final static int ANTS_QUANTITY = 3;
+    private static int ANTS_QUANTITY = 3;
 
     public AnthillCell(Coordinates coord, Map map) {
         super(coord, map);
@@ -43,6 +43,10 @@ public class AnthillCell extends Cell {
 
     public void placeFood(int quantity) {
         this.foodQuantity += quantity;
+    }
+
+    public static void setAntsQuantity(int ants) {
+        ANTS_QUANTITY = ants;
     }
 
 }
