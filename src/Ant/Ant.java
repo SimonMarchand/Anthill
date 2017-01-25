@@ -142,8 +142,10 @@ public class Ant {
      * Récupération nourriture / Dépôt nourriture
      */
     public void move() {
+        boolean hasFood = this.hasFood();
+
         // Commence par déposer des phéromones sur la case actuelle si elle transporte de la nourriture
-        if (this.hasFood())
+        if (hasFood)
             this.getCurrentCell().putPheromones(PHEROMONES_CAPACITY);
             // On enregistre le trajet si la fourmi n'a pas de nourriture sur elle
         else
@@ -156,9 +158,9 @@ public class Ant {
 
         // Enfin elle récupère la nourriture si elle est sur une case de nourriture, ou elle en dépose si elle est arrivée à la fourmillière
         // Ainsi on obtient une trace de phéromones sur tout le trajet (case nourriture comprise), sauf sur la fourmillière.
-        if (cell instanceof FoodCell && !this.hasFood() && ((FoodCell) cell).hasFood()) {
+        if (cell instanceof FoodCell && !hasFood && ((FoodCell) cell).hasFood()) {
             this.takeFood((FoodCell) cell);
-        } else if (cell instanceof AnthillCell && this.hasFood()) {
+        } else if (cell instanceof AnthillCell && hasFood) {
             this.putFood((AnthillCell) cell);
             this.backTrack = new Stack<Coordinates>();
         }
