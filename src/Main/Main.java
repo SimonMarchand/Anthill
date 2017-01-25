@@ -107,4 +107,14 @@ public abstract class Main {
             return fileName.substring(fileName.lastIndexOf(".")+1);
         else return "";
     }
+
+    protected static Map initMap(String mapName) {
+        Map map = MapReader.createMap(mapName);
+        if(map!= null) return map;
+        else {
+            System.out.println("Carte non valide");
+            System.exit(1);
+            return null;
+        }
+    }
 }

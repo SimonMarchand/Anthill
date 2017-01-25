@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class SingleTest extends Main {
 
     public static void main(String args[]) {
-        Map map = MapReader.createMap(getMapName());
+        Map map = initMap(getMapName());
 
         setVariables();
 

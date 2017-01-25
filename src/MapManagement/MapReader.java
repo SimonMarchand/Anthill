@@ -59,16 +59,27 @@ public class MapReader {
 
                         case X:
                             grid[c][x] = new AnthillCell(new Coordinates(c, x), map);
+                            map.addAnthill((AnthillCell) grid[c][x]);
                             break;
 
                         case empty:
                             grid[c][x] = new EmptyCell(new Coordinates(c, x), map);
                             break;
                     }
+
+                    // Validation : vérifie si les cases en bordure de la carte sont bien des obstacles
+                    if(c == 0 || c == length - 1 || x == 0 || x == width - 1) {
+                        if(!(grid[c][x] instanceof ObstacleCell)) {
+                            return null;
+                        }
+                    }
                 }
                 c++;
                 // System.out.println("");
             }
+            // Validation : vérifie si il existe bien au moins une fourmilière et une source de nourriture
+            if (map.getAnthills().isEmpty() || map.getFoodLeft()==0)
+                return null;
 
             fileReader.close();
             bufferedReader.close();
@@ -76,8 +87,11 @@ public class MapReader {
             // System.out.println("Lecture du fichier ok");
 
         } catch (IOException e) {
-            e.getMessage();
-            // System.out.println("Input/Output Error, Impossible de lire le fichier");
+            System.out.println("Carte non valide : " + e.getMessage());
+            System.exit(1);
+        } catch(StringIndexOutOfBoundsException e) {
+            System.out.println("Carte non valide : " + e.getMessage());
+            System.exit(1);
 
         }
 

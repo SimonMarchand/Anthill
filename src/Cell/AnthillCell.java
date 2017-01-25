@@ -17,7 +17,6 @@ public class AnthillCell extends Cell {
 
     public AnthillCell(Coordinates coord, Map map) {
         super(coord, map);
-        this.map.addAnthill(this);
         this.foodQuantity = 0;
         this.ants = new ArrayList<Ant>();
 
