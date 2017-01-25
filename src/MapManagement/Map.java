@@ -81,6 +81,25 @@ public class Map {
 
     }
 
+    public String printCellFrame(Cell cell) {
+
+        String s = cell.getClass().getName();
+
+        switch (s) {
+            case "Cell.AnthillCell":
+                return " X ";
+            case "Cell.EmptyCell":
+                return "   ";
+            case "Cell.ObstacleCell":
+                return " # ";
+            case "Cell.FoodCell":
+                return " o ";
+            default:
+                return "   ";
+        }
+
+    }
+
     /**
      * Permet d'ajouter la quantité donnée de nourriture à foodLeft
      *
@@ -155,5 +174,18 @@ public class Map {
             System.out.println();
         }
     }
+
+
+    public int getWidth(){
+        return grid.length;
+    }
+
+    public int getHeigt(){
+        return grid[0].length;
+    }
+
+    public Cell[][] getGrid(){ return grid; }
+
+
 
 }
