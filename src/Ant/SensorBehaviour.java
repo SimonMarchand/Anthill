@@ -6,14 +6,13 @@ import Cell.ObstacleCell;
 /**
  * Created by felix on 03/01/17.
  */
-public class SensorBehaviour extends Behaviour {
+public class SensorBehaviour extends Behaviour implements IBehaviour {
 
     public SensorBehaviour(Ant ant) {
         this.ant = ant;
         ant.setBehaviour(this);
     }
 
-    @Override
     public Cell nextCell() {
         if (ant.hasFood()) return backToAnthill();
 
@@ -23,7 +22,9 @@ public class SensorBehaviour extends Behaviour {
         return getChosenCell();
     }
 
-    @Override
+    /**
+     * Set les évaluations des cases entourant la fourmi.
+     */
     protected void setSurroundingEvaluations() {
         setBasicSurroundingEvaluations();
 

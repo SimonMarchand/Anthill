@@ -25,16 +25,6 @@ public abstract class Behaviour {
     // Contient la somme pondérée des évaluations des cases dans le sens horaire
     protected ArrayList<Float> evaluations;
 
-    /**
-     * Renvoie la cellule du prochain mouvement de la fourmi donnée en paramètre.
-     * Décrite dans les classes filles.
-     *
-     * @return Cell cell
-     */
-    public Cell nextCell() {
-        return null;
-    }
-
     protected Cell backToAnthill() {
         return ant.getAntHill().getMap().getCell(ant.getBackTrack().pop());
     }
@@ -51,13 +41,6 @@ public abstract class Behaviour {
             String direction = Ant.ORIENTATIONS[(antOrientationIndex + i) % Ant.ORIENTATIONS.length];
             this.surroundings.add(new CellEvaluation(getCellDirection(direction)));
         }
-    }
-
-    /**
-     * Set les évaluations des cases entourant la fourmi.
-     * Décrite dans les classes filles.
-     */
-    protected void setSurroundingEvaluations() {
     }
 
     /**

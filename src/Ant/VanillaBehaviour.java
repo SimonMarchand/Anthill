@@ -10,14 +10,13 @@ import java.util.ArrayList;
  * et la fourmi ne voit pas les cases autour d'elle. Elle peut choisir de se déplacer vers
  * une case obstacle, auquel cas elle s'y dirige mais reste sur place.
  */
-public class VanillaBehaviour extends Behaviour {
+public class VanillaBehaviour extends Behaviour implements  IBehaviour {
 
     public VanillaBehaviour(Ant ant) {
         this.ant = ant;
         ant.setBehaviour(this);
     }
 
-    @Override
     public Cell nextCell() {
         if (ant.hasFood()) return backToAnthill();
 
@@ -27,7 +26,9 @@ public class VanillaBehaviour extends Behaviour {
         return getChosenCell();
     }
 
-    @Override
+    /**
+     * Set les évaluations des cases entourant la fourmi.
+     */
     protected void setSurroundingEvaluations() {
         setBasicSurroundingEvaluations();
 

@@ -35,7 +35,7 @@ public class Ant {
     private Stack backTrack;
     private AnthillCell antHill;
     private Food food;
-    private Behaviour behaviour;
+    private IBehaviour behaviour;
     // Correspond aux lettres du pôle vers lequel elle est orientée
     private String orientation;
 
@@ -108,11 +108,11 @@ public class Ant {
         this.orientation = orientation;
     }
 
-    public Behaviour getBehaviour() {
+    public IBehaviour getBehaviour() {
         return behaviour;
     }
 
-    public void setBehaviour(Behaviour behaviour) {
+    public void setBehaviour(IBehaviour behaviour) {
         this.behaviour = behaviour;
     }
 
