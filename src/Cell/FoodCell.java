@@ -8,6 +8,7 @@ import MapManagement.Map;
 public class FoodCell extends Cell {
 
     private Food food;
+    public static int FOOD_QUANTITY = 3;
 
 
     public FoodCell(Coordinates coord, Map map, Food food) {
@@ -26,5 +27,9 @@ public class FoodCell extends Cell {
     public boolean hasFood() {
         if (food.getQuantity() == 0) return false;
         else return true;
+    }
+
+    public static void setFoodQuantity(int quantity) {
+        FOOD_QUANTITY = quantity;
     }
 }

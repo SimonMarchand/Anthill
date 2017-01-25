@@ -13,7 +13,9 @@ import java.util.Stack;
  * Created by felix on 03/01/17.
  */
 public class Ant {
-    public static int PHEROMONES_CAPACITY = 1;
+    // Quantité de phéromones déposées sur les cases au retour à la fourmillière
+    public static int PHEROMONES_CAPACITY = 10;
+    // Quantité de nourriture max transoprtée par la fourmi
     public static int FOOD_CAPACITY = 1;
     /**
      * Evolution possible : passer a un enum pour les orientations.
@@ -162,6 +164,10 @@ public class Ant {
         }
     }
 
+    /**
+     * Récupère la nourriture présente sur la case en fonction de la capacité de la fourmi
+     * @param cell
+     */
     private void takeFood(FoodCell cell) {
         Food food = cell.getFood();
 
@@ -176,12 +182,21 @@ public class Ant {
         }
     }
 
+    /**
+     * Dépose toute la nourriture de la fourmi sur la fourmillière
+     * @param cell
+     */
     private void putFood(AnthillCell cell) {
         cell.placeFood(this.getFood().getQuantity());
         cell.getMap().removeFood(this.getFood().getQuantity());
         this.food = null;
     }
 
+    /**
+     * Retourne l'index de l'orientation donnée
+     * @param orientation
+     * @return
+     */
     public static int getOrientationIndex(String orientation) {
         for (int i = 0; i < Ant.ORIENTATIONS.length; i++) {
             if (Ant.ORIENTATIONS[i] == orientation)
@@ -190,5 +205,9 @@ public class Ant {
 
         // Si l'orientation n'a pas été trouvée on retourne un index négatif pour détecter l'erreur
         return -1;
+    }
+
+    public static void setPheromonesCapacity(int capacity) {
+        PHEROMONES_CAPACITY = capacity;
     }
 }

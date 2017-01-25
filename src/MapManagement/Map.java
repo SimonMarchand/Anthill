@@ -72,7 +72,7 @@ public class Map {
                 System.out.print("  #");
                 break;
             case "Cell.FoodCell":
-                System.out.print("  0");
+                System.out.print("  o");
 //                System.out.printf("%3d", ((FoodCell) cell).getFood().getQuantity());
                 break;
             default:

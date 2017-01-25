@@ -17,7 +17,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Main",
+					"name": "Main.Main",
 					"visible": true,
 					"defaultDiagram": true,
 					"ownedViews": [
@@ -6788,7 +6788,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "Main",
+											"text": "Main.Main",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -12083,7 +12083,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Main",
+					"name": "Main.Main",
 					"visibility": "public",
 					"isAbstract": false,
 					"isFinalSpecialization": false,

@@ -8,18 +8,16 @@ import Cell.*;
  * Created by felix on 03/01/17.
  */
 public class MapReader {
-    final static String MAPS_PATH = System.getProperty("user.dir") + File.separator + "Maps" + File.separator;
+    final public static String MAPS_PATH = System.getProperty("user.dir") + File.separator + "Maps" + File.separator;
 
     public static Map createMap(String url) {
         url = MAPS_PATH + url;
 
         // Constantes Pour le Switch:Case plus bas
         final String hashtag = "#";
-        final String zero = "0";
+        final String zero = "o";
         final String X = "x";
         final String empty = " ";
-
-        final int FOOD_QUANTITY = 10;
 
         // Longueur et largeur de la map a charger
         int length = getTextFileLength(url);
@@ -54,7 +52,7 @@ public class MapReader {
                             break;
 
                         case zero:
-                            Food food = new Food(FOOD_QUANTITY);
+                            Food food = new Food(FoodCell.FOOD_QUANTITY);
                             grid[c][x] = new FoodCell(new Coordinates(c, x), map, food);
                             map.addFood(food.getQuantity());
                             break;
