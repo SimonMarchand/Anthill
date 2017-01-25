@@ -74,13 +74,14 @@ public abstract class Main {
      * @return
      */
     public static String getMapName() {
-        int mapIndex = 0, i = 0;
+        int mapIndex = 0;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choisissez la carte parmis la liste suivante : ");
         File mapsDir = new File(MapReader.MAPS_PATH);
         ArrayList<File> maps = new ArrayList<File>(Arrays.asList(mapsDir.listFiles()));
-        for (File map : maps) {
-            if(map.isFile()){
+        for (int i = 0; i < maps.size(); i++) {
+            File map = maps.get(i);
+            if(map.isFile() && getFileExtension(map).equals("txt")){
                 mapIndex++;
                 System.out.println(mapIndex + " : " + map.getName());
             }
@@ -88,7 +89,6 @@ public abstract class Main {
                 maps.remove(i);
                 i--;
             }
-            i++;
         }
 
         System.out.print("--> ");
@@ -99,5 +99,12 @@ public abstract class Main {
         }
 
         return maps.get(userInput - 1).getName();
+    }
+
+    private static String getFileExtension(File file) {
+        String fileName = file.getName();
+        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+            return fileName.substring(fileName.lastIndexOf(".")+1);
+        else return "";
     }
 }
