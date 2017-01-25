@@ -168,7 +168,8 @@ public abstract class Behaviour {
     }
 
     /**
-     * Set les evaluations de base pour les cases environnantes
+     * Set les evaluations de base pour les cases environnantes,
+     * sans prise en compte des phéromones ni des obstacles
      */
     protected void setBasicSurroundingEvaluations() {
         this.evaluations = new ArrayList<Float>();
@@ -185,6 +186,13 @@ public abstract class Behaviour {
             } else {
                 this.surroundings.get(i).setEvaluation(EVAL_MIN);
             }
+        }
+    }
+
+    protected void setObstaclesEvaluations() {
+        for (CellEvaluation cellEvaluation : surroundings) {
+            if (cellEvaluation.getCell() instanceof ObstacleCell)
+                cellEvaluation.setEvaluation(0);
         }
     }
 

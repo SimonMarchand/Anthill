@@ -27,11 +27,9 @@ public class SensorBehaviour extends Behaviour implements IBehaviour {
      */
     protected void setSurroundingEvaluations() {
         setBasicSurroundingEvaluations();
-
+        setObstaclesEvaluations();
         for (CellEvaluation cellEvaluation : surroundings) {
-            if (cellEvaluation.getCell() instanceof ObstacleCell)
-                cellEvaluation.setEvaluation(0);
-            else
+            if(cellEvaluation.getEvaluation() != 0)
                 cellEvaluation.setEvaluation(cellEvaluation.getEvaluation() + getPheromonesFromCell(cellEvaluation.getCell()));
         }
 
