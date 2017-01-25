@@ -19,8 +19,8 @@ public class Map_Frame extends GridLayout {
 
     private GridLayout gridLayout;
     private JFrame mainFrame;
-    private JLabel[][] labels;
-    private JPanel mainPanel;
+    private JLabel title;
+    private JPanel controlPanel;
     private Font font;
     private Map map;
 
@@ -31,10 +31,7 @@ public class Map_Frame extends GridLayout {
         x = map.getWidth();
         y = map.getHeigt();
         this.map = map;
-
-        labels = new JLabel[x][y];
         mainFrame = new JFrame("Anthill test");
-
         prepareFrame();
     }
 
@@ -56,11 +53,10 @@ public class Map_Frame extends GridLayout {
 
 
     public void update(Map map) {
-        /*
+
         if(mainFrame != null){
             mainFrame.getContentPane().removeAll();
         }
-        */
 
         this.map = map;
 
@@ -75,61 +71,22 @@ public class Map_Frame extends GridLayout {
         });
         //controlPanel = new JPanel(gridLayout);
 
+
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-
-                labels[i][j] = new JLabel(cellCharacterAssignement(i, j));
-                labels[i][j].setBorder(BorderFactory.createLineBorder(Color.GRAY));
-                labels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-                mainFrame.add(labels[i][j]);
+                final JLabel label = new JLabel(cellCharacterAssignement(i, j));
 
                 /*
-                final JLabel label = new JLabel(cellCharacterAssignement(i, j));
                 int pheromone = pheromoneOnCell(i,j);
                 Color c = new Color(pheromone,0,0);
                 label.setBackground(c);
+                */
 
                 label.setBorder(BorderFactory.createLineBorder(Color.GRAY));
                 label.setHorizontalAlignment(JLabel.CENTER);
                 mainFrame.add(label);
-                */
-
-
             }
         }
-    }
-
-    public void Repaint(Map map) {
-        this.map = map;
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-
-                int c = map.getCell(new Coordinates(i, j)).getPheromone().getQuantitePheromone();
-
-                if(c * 4< 254 ) {
-                    Color color = new Color(255, 254 - c * 4 , 254 - c * 4 );
-                    labels[i][j].setBackground(color);
-                }
-                else {
-                    Color color = new Color(255, 0, 0);
-                    labels[i][j].setBackground(color);
-                }
-                labels[i][j].setOpaque(true);
-
-
-                if ((map.getCell((new Coordinates(i, j))) instanceof FoodCell) && !((FoodCell) map.getCell(new Coordinates(i, j))).hasFood()) {
-                    labels[i][j].setText("");
-                } else {
-                    labels[i][j].setText(cellCharacterAssignement(i, j));
-                }
-                labels[i][j].setBorder(BorderFactory.createLineBorder(Color.gray));
-                labels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-                labels[i][j].repaint();
-
-            }
-        }
-        mainFrame.getContentPane().validate();
-        mainFrame.getContentPane().repaint();
     }
 
 

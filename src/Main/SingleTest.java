@@ -3,6 +3,7 @@ package Main;
 import Cell.AnthillCell;
 import MapManagement.Map;
 import MapManagement.MapReader;
+import MapManagement.Map_Frame;
 
 import java.util.Scanner;
 
@@ -28,6 +29,10 @@ public class SingleTest extends Main {
         System.out.println();
         map.printPheromonesHistory();
         System.out.println("Nombre d'itérations : " + nbIterations);
+
+
+        Map_Frame mapFrame = new Map_Frame(map);
+
     }
 
 }
