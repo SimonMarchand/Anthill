@@ -19,6 +19,11 @@ public abstract class Main {
      */
     public static void setVariables() {
 
+        System.out.println("Paramètres par défaut :");
+        System.out.println("Nombre de fourmis par fourmillière : " + AnthillCell.ANTS_QUANTITY);
+        System.out.println("Quantité de nourriture par case de nourriture : " + FoodCell.FOOD_QUANTITY);
+        System.out.println("Nombre de phéromones déposées par les fourmis : " + Ant.PHEROMONES_CAPACITY);
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Utiliser les paramètres par défaut ? o/n");
         boolean confirmation = scanner.nextLine().charAt(0) == 'o';
