@@ -4,6 +4,7 @@ import MapManagement.Map;
 
 /**
  * Created by felix on 03/01/17.
+ * Classe des cellules ayant contenu/contenant de la nourriture
  */
 public class FoodCell extends Cell {
 
@@ -24,6 +25,7 @@ public class FoodCell extends Cell {
         this.food = food;
     }
 
+    //Retourne vrai si la cellule contient de la nourriture
     public boolean hasFood() {
         if (food.getQuantity() == 0) return false;
         else return true;

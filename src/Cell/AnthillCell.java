@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * Created by felix on 03/01/17.
  */
 public class AnthillCell extends Cell {
+    //Quantite de nourriture dans la fourmilière
     private int foodQuantity;
     private ArrayList<Ant> ants;
     // Quantite de fourmis generees pour chaque fourmilliere
@@ -41,6 +42,7 @@ public class AnthillCell extends Cell {
         this.ants = ants;
     }
 
+    //Permet de mettre la nourriture dans la fourmilliere
     public void placeFood(int quantity) {
         this.foodQuantity += quantity;
     }
