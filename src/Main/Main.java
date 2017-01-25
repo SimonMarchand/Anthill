@@ -57,6 +57,14 @@ public abstract class Main {
             i = scanner.nextInt();
         }
         Ant.setPheromonesCapacity(i);
+
+        System.out.println("Capacité de nourriture par fourmi : ");
+        i = scanner.nextInt();
+        while (i < 0) {
+            System.out.println("Veuillez saisir une valeur valide.");
+            i = scanner.nextInt();
+        }
+        Ant.setFoodCapacity(i);
     }
 
     public static int runTest(Map map) {

@@ -212,4 +212,8 @@ public class Ant {
     public static void setPheromonesCapacity(int capacity) {
         PHEROMONES_CAPACITY = capacity;
     }
+
+    public static void setFoodCapacity(int capacity) {
+        FOOD_CAPACITY = capacity;
+    }
 }
