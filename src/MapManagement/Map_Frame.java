@@ -99,6 +99,12 @@ public class Map_Frame extends GridLayout {
         }
     }
 
+    /**
+     * Permet d'afficher la map à chaque itération, et d'afficher l'historique des phéromones si le paramètre history est donné
+     * true
+     * @param map
+     * @param history : afficher l'historique
+     */
     public void Repaint(Map map, boolean history) {
         this.map = map;
         int maxHistory = map.getMaxHistory();
