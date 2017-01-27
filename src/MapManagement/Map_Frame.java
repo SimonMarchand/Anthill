@@ -99,15 +99,22 @@ public class Map_Frame extends GridLayout {
         }
     }
 
-    public void Repaint(Map map) {
+    public void Repaint(Map map, boolean history) {
         this.map = map;
+        int maxHistory = map.getMaxHistory();
+
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
 
-                int c = map.getCell(new Coordinates(i, j)).getPheromone().getQuantitePheromone();
+                int c;
+                if (!history) {
+                    c = map.getCell(new Coordinates(i, j)).getPheromone().getQuantitePheromone() * 4;
+                } else {
+                    c = map.getCell(new Coordinates(i, j)).getPheromonesHistory() * 255 / maxHistory;
+                }
 
-                if (c * 4 < 254) {
-                    Color color = new Color(255, 254 - c * 4, 254 - c * 4);
+                if (c < 254) {
+                    Color color = new Color(255, 254 - c, 254 - c);
                     labels[i][j].setBackground(color);
                 } else {
                     Color color = new Color(255, 0, 0);

@@ -195,6 +195,16 @@ public class Map {
 
     public Cell[][] getGrid(){ return grid; }
 
+    public int getMaxHistory() {
+        int maxHistory = 0;
+        for(Cell[] line : this.grid) {
+            for(Cell cell : line) {
+                if(cell.getPheromonesHistory() > maxHistory)
+                    maxHistory = cell.getPheromonesHistory();
+            }
+        }
 
+        return maxHistory;
+    }
 
 }

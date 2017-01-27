@@ -24,8 +24,7 @@ public class SingleTest extends Main {
 
         map.setBehaviours(confirmation);
 
-        int nbIterations = Main.runTestWithFrame(map);
-        System.out.println("Nombre d'itérations : " + nbIterations);
+        Main.runTestWithFrame(map);
 }
 
 }

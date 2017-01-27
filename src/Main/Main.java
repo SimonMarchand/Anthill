@@ -16,6 +16,7 @@ import java.util.*;
  */
 public abstract class Main {
     protected static final int TIMETOSLEEP = 1;
+
     /**
      * Permet de faire rentrer tous les paramètres par l'utilisateur
      */
@@ -82,19 +83,27 @@ public abstract class Main {
 
     public static int runTestWithFrame(Map map) {
         int i = 0;
+        Scanner scanner = new Scanner(System.in);
 
         Map_Frame mapFrame = new Map_Frame(map);
 
         while (map.getFoodLeft() > 0) {
             map.runIteration();
             System.out.println("Complétion : " + map.completion + "%");
-            mapFrame.Repaint(map);
+            mapFrame.Repaint(map, false);
             try {
                 Thread.sleep(TIMETOSLEEP);
             } catch (Exception e) {
             }
             i++;
         }
+
+        System.out.println("Nombre d'itérations : " + i);
+
+        System.out.println("Appuyez sur entrée pour afficher l'historique des phéromones");
+        String wait = scanner.nextLine();
+
+        mapFrame.Repaint(map, true);
 
         return i;
     }
@@ -111,7 +120,7 @@ public abstract class Main {
         System.out.println("Choisissez la carte parmis la liste suivante : ");
         File mapsDir = new File(MapReader.MAPS_PATH);
         //On teste si l'adresse du dossier contenant les maps est valide
-        if(mapsDir !=null) {
+        if (mapsDir != null) {
             ArrayList<File> maps = new ArrayList<File>(Arrays.asList(mapsDir.listFiles()));
             for (int i = 0; i < maps.size(); i++) {
                 File map = maps.get(i);
@@ -132,8 +141,7 @@ public abstract class Main {
             }
 
             return maps.get(userInput - 1).getName();
-        }
-        else {
+        } else {
             System.out.println("Dossier Maps absent ou racine du programme mal située");
             System.exit(1);
             return null;
