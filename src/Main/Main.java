@@ -5,7 +5,9 @@ import Cell.AnthillCell;
 import Cell.FoodCell;
 import MapManagement.Map;
 import MapManagement.MapReader;
+import MapManagement.Map_Frame;
 
+import java.io.Externalizable;
 import java.io.File;
 import java.util.*;
 
@@ -28,7 +30,7 @@ public abstract class Main {
         System.out.println("Utiliser les paramètres par défaut ? o/n");
         boolean confirmation = scanner.nextLine().charAt(0) == 'o';
         // Si l'utilisateur veut utiliser les paramètres par défaut, on arrête la fonction
-        if(confirmation) {
+        if (confirmation) {
             return;
         }
 
@@ -69,8 +71,27 @@ public abstract class Main {
         return i;
     }
 
+    public static int runTestWithFrame(Map map) {
+        int i = 0;
+
+        Map_Frame mapFrame = new Map_Frame(map);
+
+        while (map.getFoodLeft() > 0) {
+            map.runIteration();
+            mapFrame.Repaint(map);
+            try {
+                Thread.sleep(10);
+            }catch (Exception e){}
+            i++;
+        }
+
+        return i;
+    }
+
+
     /**
      * Permet à l'utilisateur de sélectionner une carte parmis la liste donnée
+     *
      * @return
      */
     public static String getMapName() {
@@ -81,11 +102,10 @@ public abstract class Main {
         ArrayList<File> maps = new ArrayList<File>(Arrays.asList(mapsDir.listFiles()));
         for (int i = 0; i < maps.size(); i++) {
             File map = maps.get(i);
-            if(map.isFile() && getFileExtension(map).equals("txt")){
+            if (map.isFile() && getFileExtension(map).equals("txt")) {
                 mapIndex++;
                 System.out.println(mapIndex + " : " + map.getName());
-            }
-            else {
+            } else {
                 maps.remove(i);
                 i--;
             }
@@ -103,8 +123,8 @@ public abstract class Main {
 
     private static String getFileExtension(File file) {
         String fileName = file.getName();
-        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
-            return fileName.substring(fileName.lastIndexOf(".")+1);
+        if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+            return fileName.substring(fileName.lastIndexOf(".") + 1);
         else return "";
     }
 }
