@@ -14,9 +14,9 @@ import java.util.Stack;
  */
 public class Ant {
     // Quantité de phéromones déposées sur les cases au retour à la fourmillière
-    public static int PHEROMONES_CAPACITY = 10;
+    public static int PHEROMONES_CAPACITY = 20;
     // Quantité de nourriture max transoprtée par la fourmi
-    public static int FOOD_CAPACITY = 1;
+    public static int FOOD_CAPACITY = 300;
     /**
      * Evolution possible : passer a un enum pour les orientations.
      */

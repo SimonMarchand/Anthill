@@ -13,7 +13,7 @@ public class AnthillCell extends Cell {
     private int foodQuantity;
     private ArrayList<Ant> ants;
     // Quantite de fourmis generees pour chaque fourmilliere
-    public static int ANTS_QUANTITY = 10;
+    public static int ANTS_QUANTITY = 150;
 
     public AnthillCell(Coordinates coord, Map map) {
         super(coord, map);

@@ -9,7 +9,7 @@ import MapManagement.Map;
 public class FoodCell extends Cell {
 
     private Food food;
-    public static int FOOD_QUANTITY = 3;
+    public static int FOOD_QUANTITY = 500;
 
 
     public FoodCell(Coordinates coord, Map map, Food food) {

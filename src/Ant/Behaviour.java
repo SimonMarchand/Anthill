@@ -13,10 +13,10 @@ import java.util.Random;
  */
 public abstract class Behaviour {
     // Pondérations des évaluations
-    protected static float EVAL_MAX = 20;
-    protected static float EVAL_2 = 15;
-    protected static float EVAL_3 = 10;
-    protected static float EVAL_4 = 5;
+    protected static float EVAL_MAX = 250;
+    protected static float EVAL_2 = 200;
+    protected static float EVAL_3 = 50;
+    protected static float EVAL_4 = 25;
     protected static float EVAL_MIN = 0;
 
     // Contient toutes les cellules entourant la fourmi
