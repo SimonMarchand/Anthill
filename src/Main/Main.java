@@ -108,26 +108,34 @@ public abstract class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choisissez la carte parmis la liste suivante : ");
         File mapsDir = new File(MapReader.MAPS_PATH);
-        ArrayList<File> maps = new ArrayList<File>(Arrays.asList(mapsDir.listFiles()));
-        for (int i = 0; i < maps.size(); i++) {
-            File map = maps.get(i);
-            if (map.isFile() && getFileExtension(map).equals("txt")) {
-                mapIndex++;
-                System.out.println(mapIndex + " : " + map.getName());
-            } else {
-                maps.remove(i);
-                i--;
+        //On teste si l'adresse du dossier contenant les maps est valide
+        if(mapsDir !=null) {
+            ArrayList<File> maps = new ArrayList<File>(Arrays.asList(mapsDir.listFiles()));
+            for (int i = 0; i < maps.size(); i++) {
+                File map = maps.get(i);
+                if (map.isFile() && getFileExtension(map).equals("txt")) {
+                    mapIndex++;
+                    System.out.println(mapIndex + " : " + map.getName());
+                } else {
+                    maps.remove(i);
+                    i--;
+                }
             }
-        }
 
-        System.out.print("--> ");
-        int userInput = scanner.nextInt();
-        while (userInput < 1 || userInput > mapIndex) {
-            System.out.println("Veuillez saisir une valeur valide.");
-            userInput = scanner.nextInt();
-        }
+            System.out.print("--> ");
+            int userInput = scanner.nextInt();
+            while (userInput < 1 || userInput > mapIndex) {
+                System.out.println("Veuillez saisir une valeur valide.");
+                userInput = scanner.nextInt();
+            }
 
-        return maps.get(userInput - 1).getName();
+            return maps.get(userInput - 1).getName();
+        }
+        else {
+            System.out.println("Dossier Maps absent ou racine du programme mal située");
+            System.exit(1);
+            return null;
+        }
     }
 
     private static String getFileExtension(File file) {
