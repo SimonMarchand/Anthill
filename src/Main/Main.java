@@ -15,7 +15,7 @@ import java.util.*;
  * Created by felix on 03/01/17.
  */
 public abstract class Main {
-
+    protected static final int TIMETOSLEEP = 1;
     /**
      * Permet de faire rentrer tous les paramètres par l'utilisateur
      */
@@ -88,7 +88,7 @@ public abstract class Main {
             map.runIteration();
             mapFrame.Repaint(map);
             try {
-                Thread.sleep(10);
+                Thread.sleep(TIMETOSLEEP);
             } catch (Exception e) {
             }
             i++;

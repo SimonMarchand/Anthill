@@ -7,6 +7,7 @@ import Cell.ObstacleCell;
  * Created by felix on 03/01/17.
  */
 public class SensorBehaviour extends Behaviour implements IBehaviour {
+    protected static final float PHEROMONEIMPACT = 0.5f;
 
     public SensorBehaviour(Ant ant) {
         this.ant = ant;
@@ -45,7 +46,7 @@ public class SensorBehaviour extends Behaviour implements IBehaviour {
      */
     private float getPheromonesFromCell(Cell cell) {
         if (cell.getPheromone() != null)
-            return cell.getPheromone().getQuantitePheromone();
+            return cell.getPheromone().getQuantitePheromone()*PHEROMONEIMPACT;
         else
             return 0;
     }
