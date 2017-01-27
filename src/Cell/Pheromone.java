@@ -5,7 +5,7 @@ package Cell;
  */
 public class Pheromone {
 
-    private static int quantitePheromone;
+    private int quantitePheromone;
 
 
     public Pheromone(int quantite) {
@@ -17,8 +17,8 @@ public class Pheromone {
         return quantitePheromone;
     }
 
-    public static void setQuantitePheromone(int quantitePheromone) {
-        Pheromone.quantitePheromone = quantitePheromone;
+    public void setQuantitePheromone(int quantitePheromone) {
+        this.quantitePheromone = quantitePheromone;
     }
 
 }

@@ -24,14 +24,9 @@ public class SingleTest extends Main {
 
         map.setBehaviours(confirmation);
 
-        int nbIterations = Main.runTest(map);
-        System.out.println("Historique des phéromones :");
-        System.out.println();
-        map.printPheromonesHistory();
+        int nbIterations = Main.runTestWithFrame(map);
         System.out.println("Nombre d'itérations : " + nbIterations);
 
-
-        Map_Frame mapFrame = new Map_Frame(map);
 
     }
 
