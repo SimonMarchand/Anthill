@@ -89,7 +89,8 @@ public abstract class Main {
             mapFrame.Repaint(map);
             try {
                 Thread.sleep(10);
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
             i++;
         }
 
@@ -138,7 +139,7 @@ public abstract class Main {
 
     protected static Map initMap(String mapName) {
         Map map = MapReader.createMap(mapName);
-        if(map!= null) return map;
+        if (map != null) return map;
         else {
             System.out.println("Carte non valide");
             System.exit(1);

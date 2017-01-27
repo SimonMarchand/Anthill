@@ -20,6 +20,7 @@ public class CompareBehaviours extends Main {
     public static void main(String args[]) {
 
         setVariables();
+
         String mapName = getMapName();
 
         Scanner scanner = new Scanner(System.in);

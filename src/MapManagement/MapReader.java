@@ -55,6 +55,7 @@ public class MapReader {
                             Food food = new Food(FoodCell.FOOD_QUANTITY);
                             grid[c][x] = new FoodCell(new Coordinates(c, x), map, food);
                             map.addFood(food.getQuantity());
+                            System.out.println(FoodCell.FOOD_QUANTITY);
                             break;
 
                         case X:
@@ -68,8 +69,8 @@ public class MapReader {
                     }
 
                     // Validation : vérifie si les cases en bordure de la carte sont bien des obstacles
-                    if(c == 0 || c == length - 1 || x == 0 || x == width - 1) {
-                        if(!(grid[c][x] instanceof ObstacleCell)) {
+                    if (c == 0 || c == length - 1 || x == 0 || x == width - 1) {
+                        if (!(grid[c][x] instanceof ObstacleCell)) {
                             return null;
                         }
                     }
@@ -78,7 +79,7 @@ public class MapReader {
                 // System.out.println("");
             }
             // Validation : vérifie si il existe bien au moins une fourmilière et une source de nourriture
-            if (map.getAnthills().isEmpty() || map.getFoodLeft()==0)
+            if (map.getAnthills().isEmpty() || map.getFoodLeft() == 0)
                 return null;
 
             fileReader.close();
@@ -89,7 +90,7 @@ public class MapReader {
         } catch (IOException e) {
             System.out.println("Carte non valide : " + e.getMessage());
             System.exit(1);
-        } catch(StringIndexOutOfBoundsException e) {
+        } catch (StringIndexOutOfBoundsException e) {
             System.out.println("Carte non valide : " + e.getMessage());
             System.exit(1);
 

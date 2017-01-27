@@ -13,9 +13,9 @@ import java.util.Scanner;
 public class SingleTest extends Main {
 
     public static void main(String args[]) {
-        Map map = initMap(getMapName());
-
         setVariables();
+
+        Map map = initMap(getMapName());
 
         Scanner scanner = new Scanner(System.in);
 

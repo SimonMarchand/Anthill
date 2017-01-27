@@ -106,11 +106,10 @@ public class Map_Frame extends GridLayout {
 
                 int c = map.getCell(new Coordinates(i, j)).getPheromone().getQuantitePheromone();
 
-                if(c * 4< 254 ) {
-                    Color color = new Color(255, 254 - c * 4 , 254 - c * 4 );
+                if (c * 4 < 254) {
+                    Color color = new Color(255, 254 - c * 4, 254 - c * 4);
                     labels[i][j].setBackground(color);
-                }
-                else {
+                } else {
                     Color color = new Color(255, 0, 0);
                     labels[i][j].setBackground(color);
                 }
