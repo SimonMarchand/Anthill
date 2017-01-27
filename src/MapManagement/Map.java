@@ -12,6 +12,7 @@ public class Map {
     private Cell[][] grid;
     // Renseigne la quantité totale de nourriture restante sur la carte
     private int foodLeft;
+    public float completion;
     private ArrayList<AnthillCell> anthills;
 
     public Map(Cell[][] grid) {
@@ -147,6 +148,9 @@ public class Map {
      * Fait tourner une itération de déplacement de toutes les fourmis
      */
     public void runIteration() {
+        // Donne la quantité de nourriture récoltée par les fourmis au total
+        int foodStored = 0;
+
         for (Cell[] cells : grid) {
             for (Cell cell : cells) {
                 cell.loosePheromones();
@@ -157,7 +161,12 @@ public class Map {
             for (Ant ant : anthill.getAnts()) {
                 ant.move();
             }
+            foodStored += anthill.getFoodQuantity();
         }
+
+        int totalFood = foodLeft + foodStored;
+        this.completion = foodStored * 100;
+        this.completion /= totalFood;
     }
 
     /**

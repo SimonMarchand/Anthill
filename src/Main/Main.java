@@ -25,6 +25,7 @@ public abstract class Main {
         System.out.println("Nombre de fourmis par fourmillière : " + AnthillCell.ANTS_QUANTITY);
         System.out.println("Quantité de nourriture par case de nourriture : " + FoodCell.FOOD_QUANTITY);
         System.out.println("Nombre de phéromones déposées par les fourmis : " + Ant.PHEROMONES_CAPACITY);
+        System.out.println("Capacité de nourriture d'une fourmi : " + Ant.FOOD_CAPACITY);
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Utiliser les paramètres par défaut ? o/n");
@@ -86,6 +87,7 @@ public abstract class Main {
 
         while (map.getFoodLeft() > 0) {
             map.runIteration();
+            System.out.println("Complétion : " + map.completion + "%");
             mapFrame.Repaint(map);
             try {
                 Thread.sleep(TIMETOSLEEP);

@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Created by felix on 12/01/2017.
  */
 public class CompareBehaviours extends Main {
-    private static int NB_ITERATIONS = 100;
+    private static int NB_ITERATIONS = 20;
 
     /**
      * Permet de faire tourner un certain nombre de tests avec chaque
@@ -39,6 +39,7 @@ public class CompareBehaviours extends Main {
             Map map = MapReader.createMap(mapName);
             map.setBehaviours(false);
             vanilliaIterationsAverage += Main.runTest(map);
+            System.out.println("Simulations effectuées : " + (i+1) + "/" + 2*NB_ITERATIONS);
         }
         vanilliaIterationsAverage = vanilliaIterationsAverage / NB_ITERATIONS;
 
@@ -47,6 +48,7 @@ public class CompareBehaviours extends Main {
             Map map = MapReader.createMap(mapName);
             map.setBehaviours(true);
             sensorsIterationsAverage += Main.runTest(map);
+            System.out.println("Simulations effectuées : " + (i+1+NB_ITERATIONS) + "/" + 2*NB_ITERATIONS);
         }
         sensorsIterationsAverage = sensorsIterationsAverage / NB_ITERATIONS;
 
