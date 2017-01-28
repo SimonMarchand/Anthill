@@ -8,8 +8,16 @@ import Cell.*;
  * Created by felix on 03/01/17.
  */
 public class MapReader {
+
+    // Url des maps
     final public static String MAPS_PATH = System.getProperty("user.dir") + File.separator + "Maps" + File.separator;
 
+
+    /**
+     * Methode lisant le fichier txt et créant la map de type Map correspondant
+     * @param url
+     * @return Map
+     */
     public static Map createMap(String url) {
         url = MAPS_PATH + url;
 
@@ -153,6 +161,12 @@ public class MapReader {
         return map;
     }
 
+
+    /**
+     * Retourne le nombre de ligne dans le fichier txt
+     * @param url
+     * @return
+     */
     private static int getTextFileLength(String url) {
         int i = 0;
         try {
@@ -176,6 +190,12 @@ public class MapReader {
         return i;
     }
 
+
+    /**
+     * Retourne le nombre de colone dans le fichier txt
+     * @param url
+     * @return
+     */
     private static int getTextFileWidth(String url) {
         int i = 0;
         try {
@@ -200,6 +220,7 @@ public class MapReader {
 
         return i;
     }
+
 
     private static int readParameters (String url) {
         int i = 0;

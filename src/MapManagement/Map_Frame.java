@@ -27,6 +27,10 @@ public class Map_Frame extends GridLayout {
     int x;
     int y;
 
+    /**
+     * Crée la fenêtre de simulation
+     * @param map
+     */
     public Map_Frame(Map map) {
         x = map.getWidth();
         y = map.getHeigt();
@@ -38,6 +42,9 @@ public class Map_Frame extends GridLayout {
         prepareFrame();
     }
 
+    /**
+     * Initialise et définit la taille de la fenêtre
+     */
     private void prepareFrame() {
 
         mainFrame.setSize(800, 800);
@@ -46,15 +53,31 @@ public class Map_Frame extends GridLayout {
     }
 
 
+    /**
+     * Retourne le caractère correspondant a la cellule cible
+     * @param x
+     * @param y
+     * @return
+     */
     private String cellCharacterAssignement(int x, int y) {
         return map.printCellFrame(map.getCell(new Coordinates(x, y)));
     }
 
+    /**
+     * Retourne la quantité de Phéromones sur la cellule cible
+     * @param x
+     * @param y
+     * @return
+     */
     private int pheromoneOnCell(int x, int y) {
         return map.getCell(new Coordinates(x, y)).getPheromonesHistory();
     }
 
 
+    /**
+     * Met à jour la map
+     * @param map
+     */
     public void update(Map map) {
         /*
         if(mainFrame != null){

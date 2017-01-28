@@ -9,11 +9,13 @@ import java.util.ArrayList;
  * Created by felix on 03/01/17.
  */
 public class Map {
+
+
     private Cell[][] grid;
-    // Renseigne la quantité totale de nourriture restante sur la carte
-    private int foodLeft;
+    private int foodLeft;  // Renseigne la quantité totale de nourriture restante sur la carte
     public float completion;
     private ArrayList<AnthillCell> anthills;
+
 
     public Map(Cell[][] grid) {
         this.grid = grid;
@@ -58,6 +60,10 @@ public class Map {
         }
     }
 
+    /**
+     * Permet l'affichage de la map dans la console
+     * @param cell
+     */
     public void printCell(Cell cell) {
 
         String s = cell.getClass().getName();
@@ -82,6 +88,11 @@ public class Map {
 
     }
 
+    /**
+     * Retourne le caractère correspondant au type de la cellule cible
+     * @param cell
+     * @return String
+     */
     public String printCellFrame(Cell cell) {
 
         String s = cell.getClass().getName();
