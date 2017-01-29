@@ -86,18 +86,6 @@ public class Map_Frame extends GridLayout {
                 labels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
                 mainFrame.add(labels[i][j]);
 
-                /*
-                final JLabel label = new JLabel(cellCharacterAssignement(i, j));
-                int pheromone = pheromoneOnCell(i,j);
-                Color c = new Color(pheromone,0,0);
-                label.setBackground(c);
-
-                label.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-                label.setHorizontalAlignment(JLabel.CENTER);
-                mainFrame.add(label);
-                */
-
-
             }
         }
     }
