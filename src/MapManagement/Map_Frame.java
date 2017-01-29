@@ -1,11 +1,7 @@
 package MapManagement;
 
-import Cell.AnthillCell;
-import Cell.Cell;
 import Cell.Coordinates;
-import Cell.EmptyCell;
 import Cell.FoodCell;
-import Cell.ObstacleCell;
 
 import javax.swing.*;
 import java.awt.*;

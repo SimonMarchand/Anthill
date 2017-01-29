@@ -1,8 +1,8 @@
 package Ant;
 
 import Cell.Cell;
-import Cell.ObstacleCell;
 import Cell.Coordinates;
+import Cell.ObstacleCell;
 import MapManagement.Map;
 
 import java.util.ArrayList;

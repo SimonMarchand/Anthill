@@ -1,7 +1,12 @@
 package MapManagement;
 
-import Ant.*;
-import Cell.*;
+import Ant.Ant;
+import Ant.SensorBehaviour;
+import Ant.VanillaBehaviour;
+import Cell.AnthillCell;
+import Cell.Cell;
+import Cell.Coordinates;
+import Cell.EmptyCell;
 
 import java.util.ArrayList;
 

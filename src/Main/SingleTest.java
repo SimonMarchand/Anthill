@@ -1,9 +1,6 @@
 package Main;
 
-import Cell.AnthillCell;
 import MapManagement.Map;
-import MapManagement.MapReader;
-import MapManagement.Map_Frame;
 
 import java.util.Scanner;
 

@@ -1,10 +1,6 @@
 package Ant;
 
-import Cell.AnthillCell;
-import Cell.Cell;
-import Cell.Coordinates;
-import Cell.Food;
-import Cell.FoodCell;
+import Cell.*;
 
 import java.util.Random;
 import java.util.Stack;

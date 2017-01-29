@@ -1,7 +1,7 @@
 package Cell;
 
-import MapManagement.Map;
 import Ant.Ant;
+import MapManagement.Map;
 
 import java.util.ArrayList;
 

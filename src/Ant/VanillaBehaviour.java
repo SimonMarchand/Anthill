@@ -2,8 +2,6 @@ package Ant;
 
 import Cell.Cell;
 
-import java.util.ArrayList;
-
 /**
  * Created by felix on 03/01/17.
  * Implémentation du comportement de la fourmi sans prise en compte des phéromones,
