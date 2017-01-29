@@ -14,8 +14,6 @@ public class Map_Frame extends GridLayout {
     private GridLayout gridLayout;
     private JFrame mainFrame;
     private JLabel[][] labels;
-    private JPanel mainPanel;
-    private Font font;
     private Map map;
 
     int x;
@@ -57,27 +55,12 @@ public class Map_Frame extends GridLayout {
         return map.printCellFrame(map.getCell(new Coordinates(x, y)));
     }
 
-    /**
-     * Retourne la quantité de Phéromones sur la cellule cible
-     * @param x
-     * @param y
-     * @return
-     */
-    private int pheromoneOnCell(int x, int y) {
-        return map.getCell(new Coordinates(x, y)).getPheromonesHistory();
-    }
-
 
     /**
      * Met à jour la map
      * @param map
      */
     public void update(Map map) {
-        /*
-        if(mainFrame != null){
-            mainFrame.getContentPane().removeAll();
-        }
-        */
 
         this.map = map;
 
@@ -90,7 +73,7 @@ public class Map_Frame extends GridLayout {
                 System.exit(0);
             }
         });
-        //controlPanel = new JPanel(gridLayout);
+
 
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {

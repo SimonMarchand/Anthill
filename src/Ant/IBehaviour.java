@@ -9,5 +9,5 @@ public interface IBehaviour {
      *
      * @return Cell cell
      */
-    public Cell nextCell();
+    Cell nextCell();
 }

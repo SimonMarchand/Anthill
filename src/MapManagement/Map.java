@@ -51,46 +51,6 @@ public class Map {
         }
     }
 
-    // A compléter pour vérifier que la map soit juste, et qu'il n'y a pas eu d'erreur de lecture
-    public void printMap() {
-        for (Cell[] cells : grid) {
-            for (Cell cell : cells) {
-
-                printCell(cell);
-
-            }
-            System.out.println();
-        }
-    }
-
-    /**
-     * Permet l'affichage de la map dans la console
-     * @param cell
-     */
-    public void printCell(Cell cell) {
-
-        String s = cell.getClass().getName();
-
-        switch (s) {
-            case "Cell.AnthillCell":
-                System.out.print("  X");
-                break;
-            case "Cell.EmptyCell":
-                System.out.print("   ");
-                break;
-            case "Cell.ObstacleCell":
-                System.out.print("  #");
-                break;
-            case "Cell.FoodCell":
-                System.out.print("  o");
-//                System.out.printf("%3d", ((FoodCell) cell).getFood().getQuantity());
-                break;
-            default:
-                break;
-        }
-
-    }
-
     /**
      * Retourne le caractère correspondant au type de la cellule cible
      * @param cell
@@ -183,22 +143,6 @@ public class Map {
         this.completion /= totalFood;
     }
 
-    /**
-     * Affiche l'historique de tous les historiques de phéromones sur la carte
-     */
-    public void printPheromonesHistory() {
-        for (Cell[] cells : grid) {
-            for (Cell cell : cells) {
-                if (cell instanceof EmptyCell)
-                    System.out.printf("%3d", cell.getPheromonesHistory());
-                else
-                    printCell(cell);
-            }
-            System.out.println();
-        }
-    }
-
-
     public int getWidth(){
         return grid.length;
     }
@@ -220,5 +164,4 @@ public class Map {
 
         return maxHistory;
     }
-
 }
