@@ -26,7 +26,7 @@ public class SensorBehaviour extends Behaviour implements IBehaviour {
         setBasicSurroundingEvaluations();
         setObstaclesEvaluations();
         for (CellEvaluation cellEvaluation : surroundings) {
-            if(cellEvaluation.getEvaluation() != 0)
+            if (cellEvaluation.getEvaluation() != 0)
                 cellEvaluation.setEvaluation(cellEvaluation.getEvaluation() + getPheromonesFromCell(cellEvaluation.getCell()));
         }
 
@@ -42,7 +42,7 @@ public class SensorBehaviour extends Behaviour implements IBehaviour {
      */
     private float getPheromonesFromCell(Cell cell) {
         if (cell.getPheromone() != null)
-            return cell.getPheromone().getQuantitePheromone()*PHEROMONEIMPACT;
+            return cell.getPheromone().getQuantitePheromone() * PHEROMONEIMPACT;
         else
             return 0;
     }

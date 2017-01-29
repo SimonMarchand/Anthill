@@ -20,6 +20,6 @@ public class SingleTest extends Main {
         map.setBehaviours(confirmation);
 
         Main.runTestWithFrame(map);
-}
+    }
 
 }

@@ -21,6 +21,7 @@ public class Map_Frame extends GridLayout {
 
     /**
      * Crée la fenêtre de simulation
+     *
      * @param map
      */
     public Map_Frame(Map map) {
@@ -47,6 +48,7 @@ public class Map_Frame extends GridLayout {
 
     /**
      * Retourne le caractère correspondant a la cellule cible
+     *
      * @param x
      * @param y
      * @return
@@ -58,6 +60,7 @@ public class Map_Frame extends GridLayout {
 
     /**
      * Met à jour la map
+     *
      * @param map
      */
     public void update(Map map) {
@@ -102,6 +105,7 @@ public class Map_Frame extends GridLayout {
     /**
      * Permet d'afficher la map à chaque itération, et d'afficher l'historique des phéromones si le paramètre history est donné
      * true
+     *
      * @param map
      * @param history : afficher l'historique
      */

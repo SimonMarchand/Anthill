@@ -8,7 +8,7 @@ import Cell.Cell;
  * et la fourmi ne voit pas les cases autour d'elle. Elle peut choisir de se déplacer vers
  * une case obstacle, auquel cas elle s'y dirige mais reste sur place.
  */
-public class VanillaBehaviour extends Behaviour implements  IBehaviour {
+public class VanillaBehaviour extends Behaviour implements IBehaviour {
 
     public VanillaBehaviour(Ant ant) {
         this.ant = ant;

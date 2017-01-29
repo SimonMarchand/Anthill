@@ -53,6 +53,7 @@ public class Map {
 
     /**
      * Retourne le caractère correspondant au type de la cellule cible
+     *
      * @param cell
      * @return String
      */
@@ -143,21 +144,23 @@ public class Map {
         this.completion /= totalFood;
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return grid.length;
     }
 
-    public int getHeigt(){
+    public int getHeigt() {
         return grid[0].length;
     }
 
-    public Cell[][] getGrid(){ return grid; }
+    public Cell[][] getGrid() {
+        return grid;
+    }
 
     public int getMaxHistory() {
         int maxHistory = 0;
-        for(Cell[] line : this.grid) {
-            for(Cell cell : line) {
-                if(cell.getPheromonesHistory() > maxHistory)
+        for (Cell[] line : this.grid) {
+            for (Cell cell : line) {
+                if (cell.getPheromonesHistory() > maxHistory)
                     maxHistory = cell.getPheromonesHistory();
             }
         }

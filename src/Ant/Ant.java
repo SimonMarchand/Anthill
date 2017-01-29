@@ -162,6 +162,7 @@ public class Ant {
 
     /**
      * Récupère la nourriture présente sur la case en fonction de la capacité de la fourmi
+     *
      * @param cell
      */
     private void takeFood(FoodCell cell) {
@@ -180,6 +181,7 @@ public class Ant {
 
     /**
      * Dépose toute la nourriture de la fourmi sur la fourmillière
+     *
      * @param cell
      */
     private void putFood(AnthillCell cell) {
@@ -190,6 +192,7 @@ public class Ant {
 
     /**
      * Retourne l'index de l'orientation donnée
+     *
      * @param orientation
      * @return
      */
