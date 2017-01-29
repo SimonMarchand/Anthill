@@ -2,9 +2,7 @@ package Ant;
 
 import Cell.Cell;
 
-/**
- * Created by felix on 07/01/2017.
- */
+
 public class CellEvaluation {
     private Cell cell;
     private float evaluation;

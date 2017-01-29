@@ -8,9 +8,7 @@ import MapManagement.Map;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by felix on 03/01/17.
- */
+
 public abstract class Behaviour {
     // Pondérations des évaluations
     protected static float EVAL_MAX = 250;

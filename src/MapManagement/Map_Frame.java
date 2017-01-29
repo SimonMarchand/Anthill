@@ -12,9 +12,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-/**
- * Created by Brandon on 25/01/2017.
- */
+
 public class Map_Frame extends GridLayout {
 
     private GridLayout gridLayout;

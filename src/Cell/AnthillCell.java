@@ -5,9 +5,7 @@ import Ant.Ant;
 
 import java.util.ArrayList;
 
-/**
- * Created by felix on 03/01/17.
- */
+
 public class AnthillCell extends Cell {
     //Quantite de nourriture dans la fourmilière
     private int foodQuantity;

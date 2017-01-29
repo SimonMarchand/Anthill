@@ -7,9 +7,7 @@ import MapManagement.Map_Frame;
 
 import java.util.Scanner;
 
-/**
- * Created by felix on 25/01/17.
- */
+
 public class SingleTest extends Main {
 
     public static void main(String args[]) {

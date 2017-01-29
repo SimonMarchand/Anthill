@@ -3,9 +3,6 @@ package Ant;
 import Cell.Cell;
 import Cell.ObstacleCell;
 
-/**
- * Created by felix on 03/01/17.
- */
 public class SensorBehaviour extends Behaviour implements IBehaviour {
     protected static final float PHEROMONEIMPACT = 0.5f;
 

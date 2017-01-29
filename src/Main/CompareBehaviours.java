@@ -5,9 +5,7 @@ import MapManagement.MapReader;
 
 import java.util.Scanner;
 
-/**
- * Created by felix on 12/01/2017.
- */
+
 public class CompareBehaviours extends Main {
     private static int NB_ITERATIONS = 20;
 

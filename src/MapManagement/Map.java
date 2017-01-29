@@ -5,9 +5,7 @@ import Cell.*;
 
 import java.util.ArrayList;
 
-/**
- * Created by felix on 03/01/17.
- */
+
 public class Map {
 
 

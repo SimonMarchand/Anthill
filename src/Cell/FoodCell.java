@@ -3,7 +3,6 @@ package Cell;
 import MapManagement.Map;
 
 /**
- * Created by felix on 03/01/17.
  * Classe des cellules ayant contenu/contenant de la nourriture
  */
 public class FoodCell extends Cell {

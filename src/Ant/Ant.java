@@ -9,9 +9,7 @@ import Cell.FoodCell;
 import java.util.Random;
 import java.util.Stack;
 
-/**
- * Created by felix on 03/01/17.
- */
+
 public class Ant {
     // Quantité de phéromones déposées sur les cases au retour à la fourmillière
     public static int PHEROMONES_CAPACITY = 20;

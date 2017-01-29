@@ -2,9 +2,7 @@ package Cell;
 
 import MapManagement.Map;
 
-/**
- * Created by felix on 03/01/17.
- */
+
 public abstract class Cell {
 
     protected int pheromonesHistory;

@@ -11,9 +11,7 @@ import java.io.Externalizable;
 import java.io.File;
 import java.util.*;
 
-/**
- * Created by felix on 03/01/17.
- */
+
 public abstract class Main {
     protected static final int TIMETOSLEEP = 1;
 

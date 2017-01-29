@@ -4,9 +4,7 @@ import java.io.*;
 
 import Cell.*;
 
-/**
- * Created by felix on 03/01/17.
- */
+
 public class MapReader {
 
     // Url des maps
@@ -27,7 +25,7 @@ public class MapReader {
         final String X = "x";
         final String empty = " ";
 
-        // Longueur et largeur de la map a charger
+        // Longueur et largeur de la map a charger  / V1 avant l'ajout des 4 première lignes dans le fichier map
         int length = getTextFileLength(url);
         int width = getTextFileWidth(url);
 
@@ -35,8 +33,7 @@ public class MapReader {
         Cell[][] grid = new Cell[length][width];
         Map map = new Map(grid);
 
-
-        //EDIT
+        // Variable permettant la lecture du nombre de source et du nombre de nourriture
         int[] foodQuantity = null;
         int foodCelNb=0;
 
@@ -47,12 +44,6 @@ public class MapReader {
             FileReader fileReader = new FileReader(url);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
-
-
-            // System.out.println("width de la map : " + width);
-            // System.out.println("Length de la map : " + length);
-
-            // System.out.println("Lecture fichier en cours ");
 
             while ((line = bufferedReader.readLine()) != null) {
 
@@ -91,15 +82,12 @@ public class MapReader {
                             default:
                                 break;
                         }
-
                     }
                 }
 
                 else{
                     for (int x = 0; x < width; x++) {
-
-                        //System.out.print("" + line.charAt(x));
-                        // Distinction des différent type de cellules en fonction du charactère lu
+                        // Distinction des différents types de cellules en fonction du charactère lu
                         switch ("" + line.charAt(x)) {
                             case hashtag:
                                 grid[c-4][x] = new ObstacleCell(new Coordinates(c-4, x), map);
@@ -136,9 +124,7 @@ public class MapReader {
                         }
                     }
                 }
-
                 c++;
-                // System.out.println("");
             }
             // Validation : vérifie si il existe bien au moins une fourmilière et une source de nourriture
             if (map.getAnthills().isEmpty() || map.getFoodLeft() == 0)
@@ -146,8 +132,6 @@ public class MapReader {
 
             fileReader.close();
             bufferedReader.close();
-
-            // System.out.println("Lecture du fichier ok");
 
         } catch (IOException e) {
             System.out.println("Carte non valide : " + e.getMessage());
@@ -157,7 +141,6 @@ public class MapReader {
             System.exit(2);
 
         }
-
         return map;
     }
 
@@ -220,26 +203,4 @@ public class MapReader {
 
         return i;
     }
-
-
-    private static int readParameters (String url) {
-        int i = 0;
-        try {
-
-            FileReader fileReader = new FileReader(url);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line;
-
-            while ((line = bufferedReader.readLine()) != null) {
-                i++;
-            }
-
-            fileReader.close();
-            bufferedReader.close();
-
-        } catch (IOException e) {
-        }
-        return 1;
-    }
-
 }
